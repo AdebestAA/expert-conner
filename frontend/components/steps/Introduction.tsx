@@ -1,0 +1,112 @@
+import React, { FC } from 'react'
+import { useCaseContext } from '@/lib/context/caseContext'
+import { RenderHTML } from '@/components/RenderHTML'
+import { Subtitle, Title } from '@/components/Title'
+import { checkEmptyRichText } from '@/lib/utils'
+
+interface Props {
+}
+
+const Introduction: FC<Props> = () => {
+  const { medicalCase } = useCaseContext()
+  if (medicalCase === null) {
+    return <SkeletonIntroduction />;
+  }
+  return (
+    <div>
+      <Title title="Introduction" />
+      {medicalCase?.historyOfPresentIllness && !checkEmptyRichText(medicalCase?.historyOfPresentIllness.html) && (
+        <div className="mt-8">
+          <Subtitle title="History of Present Illness" />
+          <div className="mb-4 text-gray-600 text-sm richtext">
+            <RenderHTML htmlString={medicalCase?.historyOfPresentIllness?.html!} />
+          </div>
+        </div>
+      )}
+      {medicalCase?.familyAndSocialHistory && !checkEmptyRichText(medicalCase?.familyAndSocialHistory.html) && (
+        <div>
+          <Subtitle title="Family and Social History" />
+          <div className="mb-4 text-gray-600 text-sm richtext">
+            <RenderHTML htmlString={medicalCase?.familyAndSocialHistory.html!} />
+          </div>
+        </div>
+      )}
+      {medicalCase?.physicalExaminationNotes && !checkEmptyRichText(medicalCase?.physicalExaminationNotes.html) && (
+        <div>
+          <Subtitle title="Physical Examination Notes" />
+          <div className="text-gray-600 text-sm richtext">
+            <RenderHTML htmlString={medicalCase?.physicalExaminationNotes.html!} />
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default Introduction
+
+
+function SkeletonIntroduction() {
+  return (
+      <div className="items-center p-2 min-h-screen w-full">
+          <div className="flex flex-row justify-between gap-4 w-full md:gap-2">
+              <div className="flex flex-col w-full">
+                  <div className="skeleton-loader h-8 max-w-48 mb-16"></div>
+                  <div className="skeleton-loader h-4 max-w-48 mb-8"></div>
+              </div>
+          </div>
+          <div className="flex flex-row justify-between gap-4 w-full md:gap-2">
+              <div className="flex flex-col w-full">
+                  <div className="flex flex-row w-full gap-2">
+                      <div className="flex flex-col w-full">
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div className="flex flex-row justify-between gap-4 w-full md:gap-2 mt-4">
+              <div className="flex flex-col w-full">
+                  <div className="skeleton-loader h-4 max-w-48 mb-8 mt-4"></div>
+              </div>
+          </div>
+          <div className="flex flex-row justify-between gap-4 w-full md:gap-2">
+              <div className="flex flex-col w-full">
+                  <div className="flex flex-row w-full gap-2">
+                      <div className="flex flex-col w-full">
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div className="flex flex-row justify-between gap-4 w-full md:gap-2 mt-4">
+              <div className="flex flex-col w-full">
+                  <div className="skeleton-loader h-4 max-w-48 mb-8 mt-4"></div>
+              </div>
+          </div>
+          <div className="flex flex-row justify-between gap-4 w-full md:gap-2">
+              <div className="flex flex-col w-full">
+                  <div className="flex flex-row w-full gap-2">
+                      <div className="flex flex-col w-full">
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                          <div className="skeleton-loader h-6 max-w-1/2 mb-4"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  );
+}

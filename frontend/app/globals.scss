@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-light flex flex-col shrink-0;
+  @apply text-textGray
+}
+
+h1 {
+  @apply text-3xl lg:text-4xl font-semibold;
+  @apply text-black;
+}
+
+h2 {
+  @apply text-lg lg:text-xl;
+  @apply text-black;
+}
+
+h3 {
+  @apply text-xl lg:text-2xl font-semibold;
+  @apply text-black;
+}
+
+h4 {
+  @apply text-lg font-semibold;
+  @apply text-black;
+}
+
+p, span {
+  @apply text-black;
+}
+
+.hoverlink {
+  @apply hover:text-blue-300 transition-all duration-100 ease-in;
+}
+
+.tiny {
+  @apply text-xs;
+}
+
+b,
+strong {
+  @apply font-semibold;
+}
+
+.richtext {
+  p {
+    @apply mb-4;
+
+  }
+
+  &.no-margin{
+    p{
+      @apply mb-0;
+      @apply text-md;
+    }
+  }
+
+  h1 {
+    @apply mb-4 scroll-mt-[20px];
+  }
+
+  h2 {
+    @apply mb-6 mt-12 scroll-mt-[20px];
+  }
+
+  h3 {
+    @apply mb-6 my-6 scroll-mt-[20px];
+  }
+
+  img {
+    @apply mb-6 max-h-96 md:max-h-[500px] object-contain;
+  }
+
+  & > ul {
+    @apply mb-6 ml-4 list-outside list-disc flex flex-col gap-3;
+
+    ul {
+      @apply ml-4 list-outside list-disc;
+    }
+  }
+
+  a {
+    @apply text-blue-500;
+  }
+
+  pre {
+    @apply my-4 bg-blue-950 text-white p-4 rounded-lg;
+  }
+
+  code {
+    @apply bg-gray-100 px-1 border border-gray-300 rounded-md;
+  }
+}
+
+ol {
+  @apply list-decimal list-outside ml-4;
+
+  li {
+    @apply mt-2;
+  }
+}
+
+@layer base {
+  .emoji-list {
+    list-style-type: none; /* Entfernt die standardmäßigen Aufzählungszeichen */
+    padding-left: 30px; /* Fügt die gewünschte Einrückung hinzu */
+  }
+
+  .emoji-list li {
+    position: relative; /* Erforderlich für die Positionierung des Emojis */
+    margin-bottom: 14px;
+  }
+
+  .emoji-list.check li::before {
+    content: "✅"; /* Hier können Sie das gewünschte Emoji setzen */
+    position: absolute;
+    left: -30px; /* Die Einrückung negieren, um das Emoji zu positionieren */
+    margin-right: 5px; /* Fügen Sie einen Abstand zwischen dem Emoji und dem Listenpunkt hinzu */
+  }
+
+  .emoji-list.bulb li::before {
+    content: "💡"; /* Hier können Sie das gewünschte Emoji setzen */
+    position: absolute;
+    left: -30px; /* Die Einrückung negieren, um das Emoji zu positionieren */
+    margin-right: 5px; /* Fügen Sie einen Abstand zwischen dem Emoji und dem Listenpunkt hinzu */
+  }
+
+  .emoji-list.hand li::before {
+    content: "👉🏻"; /* Hier können Sie das gewünschte Emoji setzen */
+    position: absolute;
+    left: -30px; /* Die Einrückung negieren, um das Emoji zu positionieren */
+    margin-right: 5px; /* Fügen Sie einen Abstand zwischen dem Emoji und dem Listenpunkt hinzu */
+  }
+
+  .standard-link {
+    @apply text-blue-500
+  }
+}
+
+.skeleton-loader {
+  background-color: #e0e0e0; /* Light gray background */
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px; /* Slightly rounded corners */
+}
+
+.skeleton-loader::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+  font-size: 0.875rem;
+  color: #4B5563;
+
+
+  thead {
+    background-color: #F9FAFB;
+    color: #6B7280;
+    border-top: 2px solid #E5E7EB;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+
+    th {
+      padding: 0.75rem 1.5rem;
+      text-align: left;
+      font-weight: 600;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: #F3F4F6;
+      }
+
+      &:nth-child(even) {
+        background-color: #E5E7EB;
+      }
+
+      td {
+        padding: 0.75rem 1.5rem;
+        border-top: 1px solid #E5E7EB;
+      }
+    }
+
+    // Add rounding to the last row
+    tr:last-child {
+      td:first-child {
+        border-bottom-left-radius: 0.5rem;
+      }
+      td:last-child {
+        border-bottom-right-radius: 0.5rem;
+      }
+    }
+  }
+}
+
+#professional-information, #personal-information, #account-settings {
+   scroll-margin-top: 250px
+ }
+
+ .references ul,
+ .references ol{
+  padding: 1rem !important;
+  margin-left: 0 !important;
+ }
+
+ .references ul li,
+ .references ol li{
+  line-break: anywhere;
+ }

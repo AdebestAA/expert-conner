@@ -1,0 +1,20 @@
+.custom-audio-player .rhap_main-controls-button svg,
+.custom-audio-player .rhap_volume-button svg {
+  color: #1026c4;
+}
+
+.custom-audio-player .rhap_progress-filled {
+  background-color: #1026c4;
+}
+
+.custom-audio-player .rhap_progress-indicator {
+  background-color: #1026c4;
+}
+
+.custom-audio-player .rhap_volume-filled {
+  background-color: #1026c4;
+}
+
+.custom-audio-player .rhap_volume-indicator {
+  background-color: #1026c4;
+}
