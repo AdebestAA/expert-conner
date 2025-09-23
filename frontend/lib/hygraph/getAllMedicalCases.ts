@@ -2,29 +2,29 @@ import { HYGRAPH_URL } from '@/lib/hygraph/hygraph'
 import { cookies } from 'next/headers'
 
 type MergedMedicalCase = {
-  // version: '15m' | '5m'
+  version: '15m' | '5m'
   id: string
   title: string
-  // supporter: string
-  // faculty: string
-  // countries?: string[]
-  // categories?: string[]
-  // likes?: number
-  // caseDescription?: { html: string }
-  // preCaseInformation?: { html: string }
-  // closingRemarks?: { html: string }
-  // literatureReview?: { html: string }
-  // references?: { html: string }
-  // historyOfPresentIllness?: { html: string }
-  // familyAndSocialHistory?: { html: string }
-  // importantInformation?: { html: string }
-  // physicalExaminationNotes?: { html: string }
-  // bannerTopBarImage?: { url: string }
-  // showBannerTopBarImage?: boolean
-  // patient: {
-  //   id?: string
-  //   profileImage?: { url: string }
-  // }
+  supporter: string
+  faculty: string
+  countries?: string[]
+  categories?: string[]
+  likes?: number
+  caseDescription?: { html: string }
+  preCaseInformation?: { html: string }
+  closingRemarks?: { html: string }
+  literatureReview?: { html: string }
+  references?: { html: string }
+  historyOfPresentIllness?: { html: string }
+  familyAndSocialHistory?: { html: string }
+  importantInformation?: { html: string }
+  physicalExaminationNotes?: { html: string }
+  bannerTopBarImage?: { url: string }
+  showBannerTopBarImage?: boolean
+  patient: {
+    id?: string
+    profileImage?: { url: string }
+  }
 }
 
 export const getAllMedicalCases = async (): Promise<MergedMedicalCase[]> => {
