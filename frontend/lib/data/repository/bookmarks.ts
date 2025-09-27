@@ -11,9 +11,18 @@ export const getBookmarks = async (): Promise<{
   data: Tables<'bookmarks'>[] | null
 }> => {
   const supabase = createSupabaseServerClient()
+  
+
 
   try {
     const { data: user, error: userError } = await getSafeUser()
+    if (!user ) {
+      return {
+        status: 'error',
+        message: 'no user',
+        data: [],
+      }
+    }
     if (userError || !user) throw new Error(userError?.message || 'User not found')
 
     const { data: bookmarks, error } = await supabase.from('bookmarks').select('*').eq('user_id', user.id)
@@ -70,6 +79,13 @@ export async function getBookmarkByCaseIdAction(caseId: string) {
   try {
     const supabase = createSupabaseServerClient()
     const { data: user, error } = await getSafeUser()
+
+    if (!user) {
+      return {
+        data:[],
+        error:null
+      }
+    }
 
     if (error || !user) {
       return {

@@ -19,6 +19,7 @@ interface MedicalCase {
   id: string
   version: string
   title: string
+  contentType:string
   supporter: string
   faculty: string
   caseDescription: {
@@ -72,6 +73,8 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
   const [filteredMedicalCases, setFilteredMedicalCases] = useState<MedicalCase[] | null>(medicalCases)
   const [selectedMedicalCase, setSelectedMedicalCase] = useState<MedicalCase | null>(null)
 
+
+  
   const { isOpen: isConfirmationOpen, onToggle: onConfirmationToggle } = useDisclose()
 
   const countryCode = countriesJson.find((c) => c.name === user?.country_of_practice)?.code || ''
@@ -87,10 +90,7 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
   }
 
 
-  useEffect(()=>{
-console.log(medicalCases);
 
-  },[medicalCases])
   const filterCases = useCallback(
     (term: string, allCases: MedicalCase[]) => {
       let result = allCases
@@ -183,7 +183,7 @@ console.log(medicalCases);
             <TableCell />
             <TableHead className="w-[100px]">Name</TableHead>
             <TableHead className="w-2/5">Case Description</TableHead>
-            <TableHead>Time</TableHead>
+            <TableHead className='w-[150px] text-center'>Content Type</TableHead>
             <TableHead>Supporter</TableHead>
             <TableHead>Faculty</TableHead>
             <TableCell />
@@ -217,7 +217,7 @@ console.log(medicalCases);
                     htmlString={shortenString(medicalCase.caseDescription.html)}
                   />
                 </TableCell>
-                <TableCell>{medicalCase.version}</TableCell>
+                <TableCell className='capitalize  text-center'>{medicalCase.contentType}</TableCell>
                 <TableCell>{medicalCase.supporter}</TableCell>
                 <TableCell>{medicalCase.faculty}</TableCell>
 

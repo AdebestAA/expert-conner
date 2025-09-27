@@ -38,9 +38,18 @@ export async function createLikeAction(caseId: string, liked: boolean) {
 export async function getAllLikes() {
   try {
     const supabase = createSupabaseServerClient()
-    const { data: user, error } = await getSafeUser()
 
-    if (error || !user) throw error || new Error('User not found')
+
+    const { data: user, error } = await getSafeUser()
+ 
+    if (!user ) {
+      return {
+        status: 'false',
+        message: 'cant fetch likes',
+        data: [],
+      }
+    }
+    if (error || !user ) throw error || new Error('User not found')
 
     const { id } = user
 
@@ -62,6 +71,13 @@ export async function getLikesByMedicalCaseId(caseId: string) {
   try {
     const supabase = createSupabaseServerClient()
     const { data: user, error } = await getSafeUser()
+    if (!user) {
+      return {
+        data:[],
+        error:null
+      }
+    }
+
 
     if (error || !user) throw error || new Error('User not found')
 
