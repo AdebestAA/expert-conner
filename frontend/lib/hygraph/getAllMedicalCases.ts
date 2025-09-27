@@ -5,6 +5,7 @@ type MergedMedicalCase = {
   version: '15m' | '5m'
   id: string
   title: string
+  contentType:string
   supporter: string
   faculty: string
   countries?: string[]
@@ -46,6 +47,7 @@ export const getAllMedicalCases = async (): Promise<MergedMedicalCase[]> => {
           title
           supporter
           faculty
+          contentType
           countries
           categories
           likes

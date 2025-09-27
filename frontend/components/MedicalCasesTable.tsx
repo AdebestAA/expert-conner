@@ -19,6 +19,7 @@ interface MedicalCase {
   id: string
   version: string
   title: string
+  contentType:string
   supporter: string
   faculty: string
   caseDescription: {
@@ -182,7 +183,7 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
             <TableCell />
             <TableHead className="w-[100px]">Name</TableHead>
             <TableHead className="w-2/5">Case Description</TableHead>
-            <TableHead>Time</TableHead>
+            <TableHead className='w-[150px] text-center'>Content Type</TableHead>
             <TableHead>Supporter</TableHead>
             <TableHead>Faculty</TableHead>
             <TableCell />
@@ -216,7 +217,7 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
                     htmlString={shortenString(medicalCase.caseDescription.html)}
                   />
                 </TableCell>
-                <TableCell>{medicalCase.version}</TableCell>
+                <TableCell className='capitalize  text-center'>{medicalCase.contentType}</TableCell>
                 <TableCell>{medicalCase.supporter}</TableCell>
                 <TableCell>{medicalCase.faculty}</TableCell>
 
