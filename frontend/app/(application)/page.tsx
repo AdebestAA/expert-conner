@@ -15,17 +15,22 @@ const staging_invite_only = 'Staging - Invite Only'
 
 export default async function Home() {
   const { data: bookmarks } = await getBookmarks()
+
   const { data: likes } = await getAllLikes()
   const { data: userProfile } = await getUserProfile()
 
   let medicalCases = undefined
-  console.log(userProfile);
+
+
+
   
-  if (userProfile?.country_of_practice === staging_invite_only) {
-    medicalCases = await getAllMedicalCasesForStaging()
-  } else {
-    medicalCases = await getAllMedicalCases()
-  }
+  // console.log("userProfile", userProfile);
+  
+  // if (userProfile?.country_of_practice === staging_invite_only) {
+  //   medicalCases = await getAllMedicalCasesForStaging()
+  // } else {
+  // }
+  medicalCases = await getAllMedicalCases()
 
 
   
@@ -40,7 +45,7 @@ export default async function Home() {
       <LanguageDropDown/>
       <Container className="flex-grow">
         <div className="flex items-center justify-between my-4">
-          <h2 className="text-xl font-medium">Welcome back, {userProfile?.first_name}</h2>
+         {userProfile?.first_name && <h2 className="text-xl font-medium">Welcome back, {userProfile?.first_name}</h2>}
         </div>
 
         <MedicalCasesTable
@@ -59,7 +64,7 @@ export default async function Home() {
         ></Link>
       </footer>
 
-      <CookiesBanner cookiesAccepted={userProfile?.cookies_accepted} />
+      {userProfile && <CookiesBanner cookiesAccepted={userProfile?.cookies_accepted} />}
     </div>
   )
 }

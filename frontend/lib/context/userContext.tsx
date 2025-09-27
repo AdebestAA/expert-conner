@@ -25,6 +25,7 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
 
   const supabase = createSupabaseBrowserClient()
 
+
   useEffect(() => {
     let isMounted = true
 

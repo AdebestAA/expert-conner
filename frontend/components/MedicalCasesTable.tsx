@@ -72,6 +72,8 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
   const [filteredMedicalCases, setFilteredMedicalCases] = useState<MedicalCase[] | null>(medicalCases)
   const [selectedMedicalCase, setSelectedMedicalCase] = useState<MedicalCase | null>(null)
 
+
+  
   const { isOpen: isConfirmationOpen, onToggle: onConfirmationToggle } = useDisclose()
 
   const countryCode = countriesJson.find((c) => c.name === user?.country_of_practice)?.code || ''
@@ -87,10 +89,7 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
   }
 
 
-  useEffect(()=>{
-console.log(medicalCases);
 
-  },[medicalCases])
   const filterCases = useCallback(
     (term: string, allCases: MedicalCase[]) => {
       let result = allCases

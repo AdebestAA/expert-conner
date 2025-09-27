@@ -16,6 +16,8 @@ async function Page({searchParams, params}: {  searchParams: Promise<{password: 
   const { email, password } = await searchParams; 
 
   const medicalCase = await getMedicalCaseById(id, {email, password})
+  console.log(medicalCase);
+  
   if (!medicalCase) {
     return <div>Medical case not found</div>
   }

@@ -11,10 +11,12 @@ export async function getUserProfile(): Promise<ServerActionReturn<Tables<'profi
   try {
     const supabase = createSupabaseServerClient()
 
+
     const { data: userId, error: userIdError } = await getCurrentUserId()
 
+    
     if (userIdError || !userId) {
-      console.error(userIdError)
+     
       return {
         error: new Error('Failed to get user id'),
         data: null,
