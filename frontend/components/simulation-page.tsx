@@ -22,6 +22,8 @@ import { Tables } from '@/lib/types/database.types'
 import { checkEmptyRichText } from '@/lib/utils'
 import Quiz from './steps/Quiz'
 import AlarmDirtyForm from './AlarmDirtyForm'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 interface Props {
   medicalCase: MedicalCase | null
@@ -36,9 +38,19 @@ export const SimulationPage: FC<Props> = ({ medicalCase, patientCase, medicalCas
   const [disabledNext, setDisabledNext] = useState(false)
   const [isPatientCardOpen, setPatientCardOpen] = useState(false)
   const [diagnosisUrl, setDiagnosisUrl] = useState('')
+  const [isMounted,setIsMounted] = useState<boolean>(false)
   const { isFormDirty } = useCaseContext()
   let allSteps: any[]
+
+  
+const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+
   const router = useRouter()
+
+  useEffect(()=>{
+    setIsMounted(true)
+      },[])
 
   const hasIntroduction = () => {
     return (
@@ -209,7 +221,7 @@ export const SimulationPage: FC<Props> = ({ medicalCase, patientCase, medicalCas
   const progress = (currentStep / allSteps.length) * 100
 
   if (!medicalCase || !patientCase) {
-    return <div>Medical case not found</div>
+    return <div>{languageTexts(lang).casesDynamicPage.medicalCaseNotFound}</div>
   }
 
   const prescribingInformation = medicalCase.prescribingInformation
@@ -227,7 +239,7 @@ export const SimulationPage: FC<Props> = ({ medicalCase, patientCase, medicalCas
         />
         {medicalCase === null && (
           <div className="visible lg:hidden">
-            <Button onClick={() => setPatientCardOpen(true)}>Patient Details</Button>
+            <Button onClick={() => setPatientCardOpen(true)}>{languageTexts(lang).casesDynamicPage.patientDetails}</Button>
           </div>
         )}
         <div className="flex flex-col-reverse md:flex-col w-full col-span-2 h-[calc(100vh-12rem)] lg:h-[calc(100vh-8rem)]">
@@ -259,14 +271,14 @@ export const SimulationPage: FC<Props> = ({ medicalCase, patientCase, medicalCas
         icon={null}
         content={
           <div>
-            <p>Would you like to make any adjustments to your decisions?</p>
+            <p>{languageTexts(lang).casesDynamicPage.adjustmentsToDecisions}</p>
             <div className="flex flex-row gap-4 items-center w-full mt-4">
               <Button
                 variant="primary"
                 onClick={onConfirmationToggle}
                 className="p-6 flex-1"
               >
-                Add Orders
+               {languageTexts(lang).casesDynamicPage.addOrders}
               </Button>
               <Button
                 variant="outline"

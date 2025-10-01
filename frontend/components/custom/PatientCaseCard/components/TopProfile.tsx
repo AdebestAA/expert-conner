@@ -5,11 +5,14 @@ import { BookmarkButton } from '@/components/bookmark-button'
 import Image from 'next/image'
 import React from 'react'
 import { Button } from '@/components/ui/button'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
+
 
 export const TopProfile = ({ patientCase }: { patientCase: PatientCase }) => {
   const fullName = `${patientCase?.firstName} ${patientCase?.lastName}`
   const { bookmark, medicalCaseId, likes, medicalCase } = useCaseContext()
-
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
   const handleRestart = () => {
     window.location.reload() // Forces a full page reload
   }
@@ -29,7 +32,7 @@ export const TopProfile = ({ patientCase }: { patientCase: PatientCase }) => {
             caseTitle={'none'}
           />
         </div>
-        <Button onClick={() => handleRestart()}>Restart Medical Case</Button>
+        <Button onClick={() => handleRestart()}>{languageTexts(lang).casesDynamicPage.restartMedicalCase}</Button>
       </div>
       <div className="flex items-center justify-start gap-4 p-4">
         <Image

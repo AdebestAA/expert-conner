@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 
@@ -12,19 +12,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 
 const LanguageDropDown = () => {
+
+const [isMounted,setIsMounted] = useState<boolean>(false)
+
+    useEffect(()=>{
+  setIsMounted(true)
+    },[])
+  
+
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
   return (
   <>
+
+
 
 
 <div className='inline-block fixed bottom-[5%] left-[5%] z-50 '>
 
 <Select 
 onValueChange={(value)=>{
-    console.log(value)
+    // console.log(value)
     document.cookie = `language=${value};`
     window.location.reload()
     
@@ -33,11 +45,11 @@ onValueChange={(value)=>{
       <SelectTrigger 
       
       className="w-[180px]">
-        <SelectValue placeholder="Select Language" />
+        <SelectValue placeholder={isMounted ? languageTexts(lang).homePage.selectLanguage :""} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup >
-          <SelectLabel>Select Language</SelectLabel>
+          <SelectLabel>{isMounted ? languageTexts(lang).homePage.selectLanguage : ""}</SelectLabel>
           <SelectItem value="en">English</SelectItem>
           <SelectItem value="fr">French</SelectItem>
           <SelectItem value="de">German</SelectItem>

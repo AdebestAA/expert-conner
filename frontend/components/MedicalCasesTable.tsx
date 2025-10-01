@@ -14,6 +14,8 @@ import { shortenString, checkEmptyRichText } from '@/lib/utils'
 import { useDisclose } from '@/lib/hooks/useDisclose'
 import countriesJson from '@/lib/countries.json'
 import categoriesJson from '@/lib/categories.json'
+import Cookies from "js-cookie"
+import languageTexts from '@/lib/utils/language'
 
 interface MedicalCase {
   id: string
@@ -69,6 +71,7 @@ interface MedicalCasesTableProps {
 const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, bookmarks, likes, user }) => {
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [isMounted,setIsMounted] = useState<boolean>(false)
   const [searchInput, setSearchInput] = useState('')
   const [filteredMedicalCases, setFilteredMedicalCases] = useState<MedicalCase[] | null>(medicalCases)
   const [selectedMedicalCase, setSelectedMedicalCase] = useState<MedicalCase | null>(null)
@@ -88,6 +91,9 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
     }
     return false
   }
+
+const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
 
 
 
@@ -109,6 +115,9 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
     },
     [selectedCategory]
   )
+  useEffect(()=>{
+setIsMounted(true)
+  },[])
 
   useEffect(() => {
     const handler = setTimeout(() => {
@@ -160,7 +169,8 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
           htmlFor="categoryFilter"
           className="block text-sm font-medium text-gray-700"
         >
-          Select Category
+          {/* Select Category */}
+          {isMounted && languageTexts(lang)?.homePage?.selectCategory}
         </label>
         <Select
           options={categoryOptions}
@@ -171,7 +181,7 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
           className="mt-1 mb-4 block w-full border-gray-300 rounded-md shadow-sm"
         />
         <Input
-          placeholder="Search"
+          placeholder={languageTexts(lang)?.homePage?.search}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
@@ -181,11 +191,11 @@ const MedicalCasesTable: React.FC<MedicalCasesTableProps> = ({ medicalCases, boo
         <TableHeader>
           <TableRow>
             <TableCell />
-            <TableHead className="w-[100px]">Name</TableHead>
-            <TableHead className="w-2/5">Case Description</TableHead>
-            <TableHead className='w-[150px] text-center'>Content Type</TableHead>
-            <TableHead>Supporter</TableHead>
-            <TableHead>Faculty</TableHead>
+            <TableHead className="w-[100px]">{isMounted && languageTexts(lang)?.homePage?.tableHeader.name}</TableHead>
+            <TableHead className="w-2/5">{isMounted && languageTexts(lang)?.homePage?.tableHeader.description}</TableHead>
+            <TableHead className='w-[150px] text-center'>{isMounted && languageTexts(lang)?.homePage?.tableHeader.contentType}</TableHead>
+            <TableHead>{isMounted && languageTexts(lang)?.homePage?.tableHeader.supporter}</TableHead>
+            <TableHead>{isMounted && languageTexts(lang)?.homePage?.tableHeader.faculty}</TableHead>
             <TableCell />
           </TableRow>
         </TableHeader>

@@ -4,6 +4,8 @@ import getPatientById from '@/lib/hygraph/getPatientById'
 import { SimulationPageWrapper } from '@/components/simulation-page-wrapper'
 import { getBookmarkByCaseIdAction } from '@/lib/data/repository/bookmarks'
 import { getLikesByMedicalCaseId } from '@/lib/data/repository/likes'
+import { cookies } from 'next/headers'
+import languageTexts from '@/lib/utils/language'
 
 interface Props {
   params: {
@@ -15,31 +17,33 @@ async function Page({searchParams, params}: {  searchParams: Promise<{password: 
   const { id } = await params
   const { email, password } = await searchParams; 
 
+const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
+
   const medicalCase = await getMedicalCaseById(id, {email, password})
-  console.log(medicalCase);
+  // console.log(medicalCase);
   
   if (!medicalCase) {
-    return <div>Medical case not found</div>
+    return <div>{languageTexts(lang).casesDynamicPage.medicalCaseNotFound}</div>
   }
 
   const patientId = medicalCase?.patient?.id
   if (!patientId) {
     return (
       <div className="flex items-center justify-center">
-        <h3>Woops - seems like you&apos;ve forgot to add a patient, please do so in Hygraph (The CMS).</h3>
+        <h3>{languageTexts(lang).casesDynamicPage.forgotToAddPatient}</h3>
       </div>
     )
   }
 
   const patientCase = medicalCase?.patient || null;
   if (!patientCase) {
-    return <div className="min-h-screen">Patient case not found</div>
+    return <div className="min-h-screen">{languageTexts(lang).casesDynamicPage.patientCaseNotFound}</div>
   }
 
   const { data: bookmark, error } = await getBookmarkByCaseIdAction(id)
 
   if (error) {
-    return <div className="min-h-screen">Something went wrong, please try again or contact support.</div>
+    return <div className="min-h-screen">{languageTexts(lang).casesDynamicPage.somethingWentWrong}</div>
   }
 
   const { data: likes } = await getLikesByMedicalCaseId(id)

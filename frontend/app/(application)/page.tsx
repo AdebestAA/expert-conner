@@ -9,6 +9,8 @@ import { getAllLikes } from '@/lib/data/repository/likes'
 import Link from 'next/link'
 import CookiesBanner from '@/components/CookiesBanner'
 import LanguageDropDown from '@/components/LanguageDropDown'
+import languageTexts from '@/lib/utils/language'
+import { cookies } from 'next/headers'
 
 
 const staging_invite_only = 'Staging - Invite Only'
@@ -23,8 +25,9 @@ export default async function Home() {
 
 
 
-  
-  // console.log("userProfile", userProfile);
+const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
+
+
   
   // if (userProfile?.country_of_practice === staging_invite_only) {
   //   medicalCases = await getAllMedicalCasesForStaging()
@@ -42,6 +45,7 @@ export default async function Home() {
 
   return (
     <div className="h-full flex flex-col">
+     
       <LanguageDropDown/>
       <Container className="flex-grow">
         <div className="flex items-center justify-between my-4">
