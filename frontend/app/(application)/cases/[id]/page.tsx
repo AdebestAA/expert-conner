@@ -29,7 +29,7 @@ const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
   const patientId = medicalCase?.patient?.id
   if (!patientId) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center ">
         <h3>{languageTexts(lang).casesDynamicPage.forgotToAddPatient}</h3>
       </div>
     )
