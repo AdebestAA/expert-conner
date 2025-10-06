@@ -5,6 +5,8 @@ import { Bookmark, BookmarkCheck, Loader2 } from 'lucide-react'
 import { useState } from 'react'
 import { useToast } from '@/components/ui/use-toast'
 import { createBookmarkAction } from '@/lib/data/repository/bookmarks'
+import { checkUserAuth } from '@/lib/data/repository/likes'
+import { useRouter } from 'next/navigation'
 
 export const BookmarkButton = ({
   caseId,
@@ -17,8 +19,16 @@ export const BookmarkButton = ({
 }) => {
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
-
+const router = useRouter()
   async function handleBookmark() {
+    const {userSignedIn} = await checkUserAuth()
+    console.log("check user SignediN", userSignedIn);
+    
+    if (!userSignedIn) {
+      router.push("/login")
+      return
+    }
+    
     if (!caseId) {
       return {
         status: 'error',

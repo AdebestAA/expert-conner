@@ -100,3 +100,25 @@ export async function getLikesByMedicalCaseId(caseId: string) {
     throw err instanceof Error ? err : new Error('Unknown error occurred')
   }
 }
+
+
+
+// check if user is authenticated
+export const checkUserAuth = async():Promise<{userSignedIn:boolean}>=>{
+  const supabase = createSupabaseServerClient()
+  const { data: user, error } = await getSafeUser()
+  if (!user) {
+
+    return{
+      userSignedIn:false,
+    }
+  
+  }
+  else {
+    return {
+      userSignedIn:true
+    }
+  }
+
+
+}

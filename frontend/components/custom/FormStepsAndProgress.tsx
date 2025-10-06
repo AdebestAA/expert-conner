@@ -10,6 +10,7 @@ import { useUser } from '@/lib/context/userContext'
 import getSimulationsLog from '@/lib/hygraph/getSimulationsLog'
 import updateExport from '@/lib/hygraph/updateExport'
 import { checkEmptyRichText } from '@/lib/utils'
+import { checkUserAuth } from '@/lib/data/repository/likes'
 export const FormStepsAndProgress = ({
     progress,
     nextStep,
@@ -61,7 +62,17 @@ export const FormStepsAndProgress = ({
     )
   })
 
-  const handleNextStep = () => {
+  const handleNextStep =async () => {
+    // check if user is signedIn
+   const {userSignedIn} = await checkUserAuth()
+    console.log("check user SignediN", userSignedIn);
+    
+    if (!userSignedIn) {
+      router.push("/login")
+      return
+    }
+
+
     if (isLastStep) {
       const urlParams = new URLSearchParams(window?.location?.search);
       if (urlParams.has('email') && urlParams.has('password')) {
