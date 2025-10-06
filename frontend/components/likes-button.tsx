@@ -4,9 +4,10 @@ import { updateLikesHygraph } from '@/lib/hygraph/updateLikes'
 import { Button } from '@/components/ui/button'
 import { Heart } from 'lucide-react'
 import React from 'react'
-import { createLikeAction } from '@/lib/data/repository/likes'
+import { checkUserAuth, createLikeAction } from '@/lib/data/repository/likes'
 import { HeartFilledIcon } from '@radix-ui/react-icons'
 import { cn, formatNumber } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 
 export const LikesButton = ({
   medicalCaseId,
@@ -20,8 +21,20 @@ export const LikesButton = ({
   isMedicalCaseV2?: boolean
 }) => {
   const [isUpdating, setIsUpdating] = React.useState(false)
+  const router = useRouter()
+
+
 
   const onClick = async () => {
+    // check if user is signedIn
+   const {userSignedIn} = await checkUserAuth()
+    console.log("check user SignediN", userSignedIn);
+    
+    if (!userSignedIn) {
+      router.push("/login")
+      return
+    }
+
     try {
       setIsUpdating(true)
 
