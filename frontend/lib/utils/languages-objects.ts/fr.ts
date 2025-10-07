@@ -1,31 +1,138 @@
-export const fr = {
-    // homepage
-    homePage:{
-        selectCategory:`Sélectionnez une catégorie`,
-        welcomeBack:`Content de te revoir`,
-        selectLanguage:`Sélectionnez la langue`,
-        search:`recherche`,
-        tableHeader:{
-            name:`Nom`,
-            description:`Description`,
-            contentType:`Type de contenu`,
-            supporter:`Supporter`,
-            faculty:`Faculté`,
+// export const fr = {
+//     // homepage
+//     homePage:{
+//         selectCategory:`Sélectionnez une catégorie`,
+//         welcomeBack:`Content de te revoir`,
+//         selectLanguage:`Sélectionnez la langue`,
+//         search:`recherche`,
+//         tableHeader:{
+//             name:`Nom`,
+//             description:`Description`,
+//             contentType:`Type de contenu`,
+//             supporter:`Supporter`,
+//             faculty:`Faculté`,
             
-        }
+//         }
+//     },
+// // cases dynamic page
+// casesDynamicPage:{
+// medicalCaseNotFound:`Cas médical introuvable`,
+// forgotToAddPatient:`Oups ! On dirait que vous avez oublié d'ajouter un patient. Veuillez le faire dans Hygraph (le CMS).`,
+// patientCaseNotFound:`Cas patient introuvable`,
+// somethingWentWrong:`Une erreur s'est produite, veuillez réessayer ou contacter le support.`,
+// patientDetails:`Détails du patient`,
+// adjustmentsToDecisions:`Souhaitez-vous apporter des ajustements à vos décisions ?`,
+// addOrders:`Ajouter des commandes`,
+// proceed:"procéder",
+// restartMedicalCase:`Redémarrer le dossier médical` 
+
+// }
+
+// }
+export const fr = {
+    tableHeader: {
+      name: "Nom",
+      description: "Description",
+      contentType: "Type de contenu",
+      supporter: "Supporter",
+      faculty: "Faculté",
     },
-// cases dynamic page
-casesDynamicPage:{
-medicalCaseNotFound:`Cas médical introuvable`,
-forgotToAddPatient:`Oups ! On dirait que vous avez oublié d'ajouter un patient. Veuillez le faire dans Hygraph (le CMS).`,
-patientCaseNotFound:`Cas patient introuvable`,
-somethingWentWrong:`Une erreur s'est produite, veuillez réessayer ou contacter le support.`,
-patientDetails:`Détails du patient`,
-adjustmentsToDecisions:`Souhaitez-vous apporter des ajustements à vos décisions ?`,
-addOrders:`Ajouter des commandes`,
-proceed:"procéder",
-restartMedicalCase:`Redémarrer le dossier médical` 
-
-}
-
-}
+    english: "Anglais",
+    search: "Recherche",
+    german: "Allemand",
+    french: "Français",
+    patientDetails: "Détails du patient",
+    years: "ans",
+    months: "mois",
+    selectLanguage: "Sélectionner la langue",
+    forgotToAddPatient:
+      "Oups - il semble que vous ayez oublié d'ajouter un patient, veuillez le faire dans Hygraph (le CMS).",
+    adjustmentsToDecisions: "Souhaitez-vous apporter des ajustements à vos décisions ?",
+    medicalCaseNotFound: "Cas médical introuvable",
+    selectCategory: "Sélectionnez une catégorie",
+    allCategories: "Toutes les catégories",
+    patientCaseNotFound: "Cas du patient introuvable",
+    somethingWentWrong:
+      "Une erreur s'est produite, veuillez réessayer ou contacter le support.",
+    name: "Nom",
+    caseDescription: "Description du cas",
+    time: "Temps",
+    supporter: "Supporter",
+    faculty: "Faculté",
+    restartMedicalCase: "redémarrer le dossier médical",
+    demographics: "démographie",
+    visits: "visites",
+    tests: "tests",
+    view: "voir",
+    close: "fermer",
+    diagnoses: "diagnostics",
+    orders: "ordres",
+    bmi: "IMC",
+    age: "Âge",
+    gender: "Genre",
+    weight: "Poids",
+    height: "Hauteur",
+    allergies: "Allergies",
+    noPreviousTests: "aucun test précédent",
+    pastVisits: "Visites passées",
+    labsImaging: "Laboratoires/Imagerie",
+    pastOrders: "Commandes passées",
+    introduction: "Introduction",
+    consultation: "Consultation",
+    selectAppropriateTests:
+      "Sélectionnez les tests appropriés pour le patient.",
+    selectBestDiagnoses: "Sélectionnez les meilleurs diagnostics.",
+    existingDiagnoses: "Diagnostics existants",
+    medicationGuide: "Guide des médicaments",
+    rr: "FR",
+    kg: "KG",
+    date: "date",
+    drugInformationText:
+      "Les informations sur les médicaments sont fournies conformément aux recommandations cliniques et aux recherches actuelles. Pour plus d'informations, veuillez consulter la notice d'emballage ou le résumé des caractéristiques du produit, les sources d'information validées et les recommandations cliniques.",
+    gotIt: "J'ai compris",
+    noPastDiagnoses: "Aucun diagnostic précédent",
+    treatmentPlans: "Plans de traitement",
+    adjustMedications:
+      "Quels ajustements, le cas échéant, apporteriez-vous aux médicaments existants du patient ?",
+    applySelections: "Appliquer les sélections",
+    addMedications: "Ajouter des médicaments",
+    addNonMedicationOrders: "Ajouter des ordonnances non médicamenteuses",
+    selectOneMedication:
+      "Veuillez sélectionner 1 médicament pour passer à la page suivante.",
+    selectAdditionalOrders:
+      "Sélectionnez les commandes supplémentaires appropriées pour le patient.",
+    consistentWithGuidance: "Ceci est conforme aux orientations",
+    beforeProceeding: "Avant de continuer",
+    adjustDecisions: "Souhaitez-vous apporter des ajustements à vos décisions ?",
+    addOrders: "Ajouter des commandes",
+    proceed: "procéder",
+    decisionReview: "Révision des décisions",
+    clickToReview: "Cliquez sur les icônes pour revoir vos décisions",
+    reviewedDecisions: "Décisions révisées",
+    caseReview: "Examen de cas",
+    finish: "finir",
+    continueToPostTest: "Continuer vers le post-test",
+    next: "Suivant",
+    noData: "aucune donnée",
+    description: "Description",
+    contentType: "Type de contenu",
+    historyOfPresentIllness: "Histoire de la maladie actuelle",
+    till: "Jusqu’à",
+    since: "Depuis",
+    ongoing: "En cours",
+    familyAndSocialHistory: "Histoire familiale et sociale",
+    physicalExamNotes: "Notes d'examen physique",
+    startDate: "Date de début",
+    endDate: "Date de fin",
+    none: "aucun",
+    noNewOrders: "Aucune nouvelle commande",
+    noPastOrders: "Aucune commande précédente",
+    newOrders: "Nouvelles commandes",
+    usefulnessQuestion:
+      "Dans quelle mesure avez-vous trouvé cette activité utile pour améliorer vos connaissances et vos compétences afin d’améliorer les soins aux patients dans votre pratique clinique ?",
+    usefulnessScale: "0 = Pas très utile 10 = Très utile",
+    thankYou:
+      "Merci de votre participation à cette activité. Sur la page suivante, vous serez redirigé vers notre site web pour accéder à des ressources et informations supplémentaires.",
+    submit: "soumettre",
+  };
+  

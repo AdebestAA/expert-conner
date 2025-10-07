@@ -1,30 +1,139 @@
+// export const en = {
+//     // homepage
+//     homePage:{
+//         selectCategory:`Select Category`,
+//         welcomeBack:`Welcome Back`,
+//         selectLanguage:`Select Language`,
+//         search:`Search`,
+//         tableHeader:{
+//             name:`Name`,
+//             description:`Description`,
+//             contentType:`Content Type`,
+//             supporter:`Supporter`,
+//             faculty:`Facaulty`,
+
+//         }
+//     },
+//     // cases dynamic page
+//     casesDynamicPage:{
+//         medicalCaseNotFound:"Medical case not found",
+//         forgotToAddPatient:`Woops - seems like you&apos;ve forgot to add a patient, please do so in Hygraph (The CMS)`,
+//         patientCaseNotFound:`Patient case not found`,
+//         somethingWentWrong:`Something went wrong, please try again or contact support.`,
+//         patientDetails:`Patient Details`,
+//         adjustmentsToDecisions:`Would you like to make any adjustments to your decisions?`,
+//         addOrders:`Add Orders`,
+//         proceed:`Proceed`,
+//         restartMedicalCase:`Restart Medical Case`
+
+//     }
+// }
+
+
 export const en = {
-    // homepage
-    homePage:{
-        selectCategory:`Select Category`,
-        welcomeBack:`Welcome Back`,
-        selectLanguage:`Select Language`,
-        search:`Search`,
-        tableHeader:{
-            name:`Name`,
-            description:`Description`,
-            contentType:`Content Type`,
-            supporter:`Supporter`,
-            faculty:`Facaulty`,
-
-        }
-    },
-    // cases dynamic page
-    casesDynamicPage:{
-        medicalCaseNotFound:"Medical case not found",
-        forgotToAddPatient:`Woops - seems like you&apos;ve forgot to add a patient, please do so in Hygraph (The CMS)`,
-        patientCaseNotFound:`Patient case not found`,
-        somethingWentWrong:`Something went wrong, please try again or contact support.`,
-        patientDetails:`Patient Details`,
-        adjustmentsToDecisions:`Would you like to make any adjustments to your decisions?`,
-        addOrders:`Add Orders`,
-        proceed:`Proceed`,
-        restartMedicalCase:`Restart Medical Case`
-
-    }
-}
+    tableHeader:{
+                    name:`Name`,
+                    description:`Description`,
+                    contentType:`Content Type`,
+                    supporter:`Supporter`,
+                    faculty:`Facaulty`,
+        
+                },
+      english: "English",
+      search:`Search`,
+      german: "German",
+      french: "French",
+      patientDetails:`Patient Details`,
+      years:"years",
+      months:"months",
+      selectLanguage:`Select Language`,
+      forgotToAddPatient:`Woops - seems like you&apos;ve forgot to add a patient, please do so in Hygraph (The CMS)`,
+      adjustmentsToDecisions:`Would you like to make any adjustments to your decisions?`,
+      medicalCaseNotFound:"Medical case not found",
+      selectCategory: "Select Category",
+      allCategories: "All Categories",
+      patientCaseNotFound:`Patient case not found`,
+      somethingWentWrong:`Something went wrong, please try again or contact support.`,
+      name: "Name",
+      caseDescription: "Case Description",
+      time: "Time",
+      supporter: "Supporter",
+      faculty: "Faculty",
+      restartMedicalCase: "restart medical case",
+      demographics: "demographics",
+      visits: "visits",
+      tests: "tests",
+      view:"view",
+      close:"close",
+      diagnoses: "Diagnoses",
+      orders: "orders",
+      bmi:"BMI",
+      age: "Age",
+      gender: "Gender",
+      weight: "Weight",
+      height: "Height",
+      allergies: "Allergies",
+      noPreviousTests:"no previous tests",
+      pastVisits: "Past Visits",
+      labsImaging: "Labs/Imaging",
+      pastOrders: "Past Orders",
+      introduction: "Introduction",
+      consultation: "Consultation",
+      selectAppropriateTests: "Select appropriate tests for the patient.",
+      selectBestDiagnoses: "Select the best diagnoses.",
+      existingDiagnoses: "Existing Diagnoses",
+      medicationGuide: "Medication Guide",
+      rr:"RR",
+      kg:"KG",
+    date:"date",
+    drugInformationText:
+      "Drug information is provided based on clinical guidelines and current research. Please refer to the package insert or summary of product characteristics, validated sources of product information, and clinical guidelines for further guidance.",
+    gotIt: "Got it",
+    
+    noPastDiagnoses:"No past diagnoses",
+    treatmentPlans: "Treatment Plans",
+    adjustMedications:
+      "What adjustments, if any, would you make to the patient’s existing medications?",
+    applySelections: "Apply selections",
+    addMedications: "Add Medications",
+    addNonMedicationOrders: "Add Non-Medication Orders",
+    selectOneMedication:
+      "Please select 1 medication to proceed to the next page.",
+    selectAdditionalOrders:
+      "Select appropriate additional orders for the patient.",
+    consistentWithGuidance: "This is consistent with the guidance",
+    beforeProceeding: "Before you proceed",
+    adjustDecisions: "Would you like to make any adjustments to your decisions?",
+    addOrders: "Add orders",
+    proceed: "proceed",
+    decisionReview: "Decision Review",
+    clickToReview: "Click icons to review your decisions",
+    reviewedDecisions: "Reviewed Decisions",
+    caseReview: "Case Review",
+    finish: "finish",
+    continueToPostTest: "Continue to the post-test",
+    next: "Next",
+    noData:"no data",
+    description: "Description",
+    contentType: "Content Type",
+    historyOfPresentIllness: "History of Present Illness",
+    till:"Till",
+    since:"Since",
+    ongoing:"Ongoing",
+   
+    familyAndSocialHistory: "Family and Social History",
+    physicalExamNotes: "Physical Examination Notes",
+    startDate: "Start Date",
+    endDate: "End Date",
+    none:"none",
+    noNewOrders: "No new orders",
+    noPastOrders: "No past orders",
+    newOrders: "New Orders",
+    usefulnessQuestion:
+      "How useful did you find this activity in enhancing your knowledge and skills for improving patient care in your clinical practice?",
+    usefulnessScale: "0 = Not very useful 10 = Very useful",
+    thankYou:
+      "Thank you for participating in this activity. On the next page, you will be redirected to our website for additional resources and information.",
+    submit: "submit",
+  };
+  

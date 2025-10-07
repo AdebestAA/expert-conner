@@ -45,11 +45,11 @@ onValueChange={(value)=>{
       <SelectTrigger 
       
       className="w-[180px]">
-        <SelectValue placeholder={isMounted ? languageTexts(lang).homePage.selectLanguage :""} />
+        <SelectValue placeholder={isMounted ? languageTexts(lang).selectLanguage :""} />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup >
-          <SelectLabel>{isMounted ? languageTexts(lang).homePage.selectLanguage : ""}</SelectLabel>
+          <SelectLabel>{isMounted ? languageTexts(lang).selectLanguage : ""}</SelectLabel>
           <SelectItem value="en">English</SelectItem>
           <SelectItem value="fr">French</SelectItem>
           <SelectItem value="de">German</SelectItem>

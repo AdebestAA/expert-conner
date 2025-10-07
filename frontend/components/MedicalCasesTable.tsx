@@ -170,7 +170,7 @@ setIsMounted(true)
           className="block text-sm font-medium text-gray-700"
         >
           {/* Select Category */}
-          {isMounted && languageTexts(lang)?.homePage?.selectCategory}
+          {isMounted && languageTexts(lang)?.selectCategory}
         </label>
         <Select
           options={categoryOptions}
@@ -181,7 +181,7 @@ setIsMounted(true)
           className="mt-1 mb-4 block w-full border-gray-300 rounded-md shadow-sm"
         />
         <Input
-          placeholder={languageTexts(lang)?.homePage?.search}
+          placeholder={languageTexts(lang)?.search}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
         />
@@ -191,11 +191,11 @@ setIsMounted(true)
         <TableHeader>
           <TableRow>
             <TableCell />
-            <TableHead className="w-[100px]">{isMounted && languageTexts(lang)?.homePage?.tableHeader.name}</TableHead>
-            <TableHead className="w-2/5">{isMounted && languageTexts(lang)?.homePage?.tableHeader.description}</TableHead>
-            <TableHead className='w-[150px] text-center'>{isMounted && languageTexts(lang)?.homePage?.tableHeader.contentType}</TableHead>
-            <TableHead>{isMounted && languageTexts(lang)?.homePage?.tableHeader.supporter}</TableHead>
-            <TableHead>{isMounted && languageTexts(lang)?.homePage?.tableHeader.faculty}</TableHead>
+            <TableHead className="w-[100px]">{isMounted && languageTexts(lang)?.tableHeader.name}</TableHead>
+            <TableHead className="w-2/5">{isMounted && languageTexts(lang)?.tableHeader.description}</TableHead>
+            <TableHead className='w-[150px] text-center'>{isMounted && languageTexts(lang)?.tableHeader.contentType}</TableHead>
+            <TableHead>{isMounted && languageTexts(lang)?.tableHeader.supporter}</TableHead>
+            <TableHead>{isMounted && languageTexts(lang)?.tableHeader.faculty}</TableHead>
             <TableCell />
           </TableRow>
         </TableHeader>

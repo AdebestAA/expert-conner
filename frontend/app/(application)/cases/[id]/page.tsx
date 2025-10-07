@@ -23,27 +23,27 @@ const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
   // console.log(medicalCase);
   
   if (!medicalCase) {
-    return <div>{languageTexts(lang).casesDynamicPage.medicalCaseNotFound}</div>
+    return <div>{languageTexts(lang).medicalCaseNotFound}</div>
   }
 
   const patientId = medicalCase?.patient?.id
   if (!patientId) {
     return (
       <div className="flex items-center justify-center ">
-        <h3>{languageTexts(lang).casesDynamicPage.forgotToAddPatient}</h3>
+        <h3>{languageTexts(lang).forgotToAddPatient}</h3>
       </div>
     )
   }
 
   const patientCase = medicalCase?.patient || null;
   if (!patientCase) {
-    return <div className="min-h-screen">{languageTexts(lang).casesDynamicPage.patientCaseNotFound}</div>
+    return <div className="min-h-screen">{languageTexts(lang).patientCaseNotFound}</div>
   }
 
   const { data: bookmark, error } = await getBookmarkByCaseIdAction(id)
 
   if (error) {
-    return <div className="min-h-screen">{languageTexts(lang).casesDynamicPage.somethingWentWrong}</div>
+    return <div className="min-h-screen">{languageTexts(lang).somethingWentWrong}</div>
   }
 
   const { data: likes } = await getLikesByMedicalCaseId(id)

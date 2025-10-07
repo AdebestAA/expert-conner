@@ -3,6 +3,7 @@ import { en } from "./languages-objects.ts/en";
 import { fr } from "./languages-objects.ts/fr";
 
 
+
 export const languageTexts = (lang:"en" | "fr" |"de" = "en")=>{
 
 

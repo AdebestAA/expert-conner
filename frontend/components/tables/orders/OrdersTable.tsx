@@ -1,8 +1,10 @@
 'use client'
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Order, NonMedicationOrder, MedicationSelection } from '@/interface';
 import OrdersTableRow from './OrdersTableRow';
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 type CombinedOrder = Order | NonMedicationOrder | MedicationSelection;
 
 type OrdersTableProps = {
@@ -11,6 +13,13 @@ type OrdersTableProps = {
 };
 
 const OrdersTable = ({ orders, type }: OrdersTableProps) => {
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+  useEffect(()=>{
+      setIsMounted(true)
+        },[])
+
   return (
     <div>
       <div className="overflow-x-auto">
@@ -19,13 +28,13 @@ const OrdersTable = ({ orders, type }: OrdersTableProps) => {
             <thead>
             <tr>
               <th className="w-1/3 py-3 text-left text-xs font-semibold text-textGray opacity-50 uppercase tracking-wider">
-                Name
+                {isMounted && languageTexts(lang).name}
               </th>
               <th className="w-1/3 py-3 text-left text-xs font-semibold text-textGray opacity-50  uppercase tracking-wider">
-                Start Date
+              {isMounted && languageTexts(lang).startDate}
               </th>
               <th className="w-1/3 py-3 text-left text-xs font-semibold text-textGray opacity-50  uppercase tracking-wider">
-                End Date
+              {isMounted && languageTexts(lang).endDate}
               </th>
             </tr>
             </thead>
@@ -33,7 +42,7 @@ const OrdersTable = ({ orders, type }: OrdersTableProps) => {
             {orders?.length === 0 && (
               <tr>
                 <td colSpan={3} className="text-center text-sm text-gray-500">
-                  { type !== 'past' ? 'No new orders' : 'No past Orders'}
+                  {isMounted && type !== 'past' ? languageTexts(lang).noNewOrders :  languageTexts(lang).noPastOrders}
                 </td>
               </tr>
             )}

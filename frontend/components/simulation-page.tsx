@@ -221,7 +221,7 @@ const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "f
   const progress = (currentStep / allSteps.length) * 100
 
   if (!medicalCase || !patientCase) {
-    return <div>{languageTexts(lang).casesDynamicPage.medicalCaseNotFound}</div>
+    return <div>{languageTexts(lang).medicalCaseNotFound}</div>
   }
 
   const prescribingInformation = medicalCase.prescribingInformation
@@ -239,7 +239,7 @@ const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "f
         />
         {medicalCase === null && (
           <div className="visible lg:hidden">
-            <Button onClick={() => setPatientCardOpen(true)}>{languageTexts(lang).casesDynamicPage.patientDetails}</Button>
+            <Button onClick={() => setPatientCardOpen(true)}>{languageTexts(lang).patientDetails}</Button>
           </div>
         )}
         <div className="flex flex-col-reverse md:flex-col w-full col-span-2 h-[calc(100vh-12rem)] lg:h-[calc(100vh-8rem)]">
@@ -271,14 +271,14 @@ const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "f
         icon={null}
         content={
           <div>
-            <p>{languageTexts(lang).casesDynamicPage.adjustmentsToDecisions}</p>
+            <p>{languageTexts(lang).adjustmentsToDecisions}</p>
             <div className="flex flex-row gap-4 items-center w-full mt-4">
               <Button
                 variant="primary"
                 onClick={onConfirmationToggle}
                 className="p-6 flex-1"
               >
-               {languageTexts(lang).casesDynamicPage.addOrders}
+               {languageTexts(lang).addOrders}
               </Button>
               <Button
                 variant="outline"

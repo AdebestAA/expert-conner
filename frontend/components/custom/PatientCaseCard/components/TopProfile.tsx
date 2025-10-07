@@ -32,7 +32,7 @@ export const TopProfile = ({ patientCase }: { patientCase: PatientCase }) => {
             caseTitle={'none'}
           />
         </div>
-        <Button onClick={() => handleRestart()}>{languageTexts(lang).casesDynamicPage.restartMedicalCase}</Button>
+        <Button onClick={() => handleRestart()}>{languageTexts(lang).restartMedicalCase}</Button>
       </div>
       <div className="flex items-center justify-start gap-4 p-4">
         <Image
