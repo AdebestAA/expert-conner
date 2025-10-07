@@ -1,4 +1,7 @@
+
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 const useDebounce = (callback, delay) => {
   const timeoutRef = useRef(null)
@@ -83,7 +86,14 @@ export const TabNavigation = ({
                                 diagnosesRef,
                                 pastOrdersRef,
                               }) => {
-  const tabs = ['Demographics', 'Visits', 'Tests', 'Diagnoses', 'Orders']
+
+                                const tabs = ['Demographics', 'Visits', 'Tests', 'Diagnoses', 'Orders']
+                      const lang = Cookies.get("language") 
+                      const [isMounted,setIsMounted] = useState(false)
+                      useEffect(()=>{
+                          setIsMounted(true)
+                            },[])
+                              
 
   const sectionRefs = useMemo(() => ({
     Demographics: caseDescriptionRef,
@@ -120,13 +130,13 @@ export const TabNavigation = ({
             <button
               key={tab}
               onClick={() => handleScrollToSection(tab)}
-              className={`flex-grow text-center px-1 lg:px-4 py-2 rounded-full transition-colors duration-300 tiny ${
+              className={`capitalize flex-grow text-center px-1 lg:px-4 py-2 rounded-full transition-colors duration-300 tiny ${
                 activeTab === tab
                   ? 'bg-textPrimary text-white'
                   : 'text-gray-600 hover:bg-gray-100'
               }`}
             >
-              {tab}
+              {isMounted && languageTexts(lang)[tab.toLocaleLowerCase()]}
 
             </button>
           )

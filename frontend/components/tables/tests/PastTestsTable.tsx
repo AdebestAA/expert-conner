@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { PastTest } from '@/interface'
 import { useDisclose } from '@/lib/hooks/useDisclose'
 import { formatDate } from '@/lib/utils'
@@ -8,16 +8,26 @@ import { RenderHTML } from '@/components/RenderHTML'
 import { Button } from '@/components/ui/button'
 import { GenericDialog } from '@/components/custom/GenericDialog'
 import { calculateDate } from '@/lib/utils'
+import languageTexts from '@/lib/utils/language'
+import Cookies from 'js-cookie'
 
 type PastTestsTableProps = {
   pastTests?: PastTest[];
+ 
 }
 
 const PastTestsTable = ({ pastTests }: PastTestsTableProps) => {
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+  useEffect(()=>{
+      setIsMounted(true)
+        },[])
+
   return (
     <div className="mt-4 space-y-1">
       {(!pastTests || pastTests?.length === 0) && (
-        <div className="py-4 text-sm text-gray-500">No previous tests</div>
+        <div className="py-4 text-sm text-gray-500">{isMounted && languageTexts(lang).noPreviousTests}</div>
       )}
       {pastTests?.map((item, index) => (
         <PastTestsCard key={index} item={item} />
@@ -28,6 +38,13 @@ const PastTestsTable = ({ pastTests }: PastTestsTableProps) => {
 
 
 const PastTestsCard = ({ item }: { item: PastTest }) => {
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+  useEffect(()=>{
+      setIsMounted(true)
+        },[])
+
   const { isOpen, onToggle } = useDisclose()
   const htmlString = item.findingsText.html
 
@@ -44,7 +61,7 @@ const PastTestsCard = ({ item }: { item: PastTest }) => {
         </div>
 
         <Button onClick={onToggle} variant="outline">
-          View
+         {isMounted && languageTexts(lang).view}
         </Button>
       </div>
 
@@ -53,7 +70,7 @@ const PastTestsCard = ({ item }: { item: PastTest }) => {
         <GenericDialog
           open={isOpen}
           onOpenChange={onToggle}
-          title={'Labs/Imaging'}
+          title={isMounted ? languageTexts(lang).labsImaging : "Labs/Imaging"}
           content={
             <RenderHTML htmlString={htmlString} />
           }

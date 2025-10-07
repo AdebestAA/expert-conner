@@ -93,14 +93,14 @@ export const PatientCaseCard: FC<Props> = ({ isOpen, setIsOpen }) => {
     <>
       <Card className="col-span-1 flex-col py-0 overflow-y-visible relative hidden lg:flex border-none">
         <TopProfile patientCase={patientCase!} />
-        {/* <div className="p-4">
+        <div className="p-4">
           {hasImportantInformation() && (
             <ImportantInformation
               ref={importantInformationRef}
               medicalCase={medicalCase!}
             />
           )}
-        </div> */}
+        </div>
         <TabNavigation
           caseDescriptionRef={caseDescriptionRef}
           pastVisitsRef={pastVisitsRef}
@@ -113,6 +113,7 @@ export const PatientCaseCard: FC<Props> = ({ isOpen, setIsOpen }) => {
           <CaseDescription
             ref={caseDescriptionRef}
             medicalCase={medicalCase!}
+           
           />
           <PastVisits
             ref={pastVisitsRef}

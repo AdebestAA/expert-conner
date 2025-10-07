@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from '@/components/ui/drawer'
 import { ChevronsRight } from 'lucide-react'
+import languageTexts from '@/lib/utils/language'
+import Cookies from 'js-cookie'
 
 type GenericDialogProps = {
   asDrawer?: boolean
@@ -15,6 +17,13 @@ type GenericDialogProps = {
 };
 
 export const GenericDialog = (props: GenericDialogProps) => {
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+  useEffect(()=>{
+      setIsMounted(true)
+        },[])
+
   const titleGap = props.title ? "p-10" : "p-10 gap-0"
   if (props.asDrawer) {
     return (
@@ -33,7 +42,7 @@ export const GenericDialog = (props: GenericDialogProps) => {
              </div>
           </DrawerHeader>
           <DrawerFooter>
-            <Button variant="primary" className="py-6" onClick={props.onOpenChange}>Close</Button>
+            <Button variant="primary" className="py-6" onClick={props.onOpenChange}>{isMounted && languageTexts(lang).close}</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -54,7 +63,7 @@ export const GenericDialog = (props: GenericDialogProps) => {
         <div className="max-h-[50vh] gap-8 flex flex-col overflow-y-auto">
           {props.content}
         </div>
-        {props.showButton && <Button variant="primary" className="py-6" onClick={props.onOpenChange}>Got it!</Button>}
+        {props.showButton && <Button variant="primary" className="py-6" onClick={props.onOpenChange}>{isMounted && languageTexts(lang).gotIt + "!"}</Button>}
       </DialogContent>
     </Dialog>
   )
