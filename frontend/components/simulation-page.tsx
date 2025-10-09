@@ -86,23 +86,23 @@ const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "f
   }
 
   const baseSteps = [
-    { component: <Introduction key="Introduction" />, key: 'Introduction', isStep: hasIntroduction() },
-    { component: <PatientInterview key="PatientInterview" />, key: 'Consultation', isStep: hasPatientInterview() },
+    { component: <Introduction key={isMounted ? languageTexts(lang).introduction  : ""} />, key: isMounted ? languageTexts(lang).introduction  : "", isStep: hasIntroduction() },
+    { component: <PatientInterview key={isMounted ? languageTexts(lang).patientInterview  : ""} />, key: isMounted ? languageTexts(lang).consultation  : "", isStep: hasPatientInterview() },
     {
       component: (
         <Tests
           setDisabledNext={setDisabledNext}
-          key="Tests"
+          key={isMounted ? languageTexts(lang).tests  : ""}
         />
       ),
-      key: 'Tests',
+      key: isMounted ? languageTexts(lang).tests  : "",
       isStep: hasTests(),
     },
     {
       component: (
         <Diagnoses
           setDisabledNext={setDisabledNext}
-          key="Diagnoses"
+          key={isMounted ? languageTexts(lang).diagnoses  : ""}
         />
       ),
       key: 'Diagnoses',

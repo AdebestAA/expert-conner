@@ -78,6 +78,7 @@ export const fr = {
     labsImaging: "Laboratoires/Imagerie",
     pastOrders: "Commandes passées",
     introduction: "Introduction",
+    back:"Retour",
     consultation: "Consultation",
     selectAppropriateTests:
       "Sélectionnez les tests appropriés pour le patient.",
@@ -87,6 +88,7 @@ export const fr = {
     rr: "FR",
     kg: "KG",
     date: "date",
+    patientInterview:"Interview mit dem Patienten",
     drugInformationText:
       "Les informations sur les médicaments sont fournies conformément aux recommandations cliniques et aux recherches actuelles. Pour plus d'informations, veuillez consulter la notice d'emballage ou le résumé des caractéristiques du produit, les sources d'information validées et les recommandations cliniques.",
     gotIt: "J'ai compris",
