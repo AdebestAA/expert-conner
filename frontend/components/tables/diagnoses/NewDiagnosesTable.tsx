@@ -6,6 +6,8 @@ import { GenericDialog } from '@/components/custom/GenericDialog'
 import { RenderHTML } from '@/components/RenderHTML'
 import { GuidanceIcon, GuidanceTitle } from '@/components/GuidanceTitle'
 import { useCaseContext } from '@/lib/context/caseContext'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 type NewDiagnoseTableProps = {
   newDiagnoses: {
@@ -28,6 +30,17 @@ export const NewDiagnosesTable = ({ newDiagnoses, setDisabledNext }: NewDiagnose
   const [newDiagnosesState, setNewDiagnosesState] = useState(newDiagnoses)
   const { isOpen, onToggle } = useDisclose()
   const { updateItemToReview, removeItemFromReview } = useCaseContext()
+
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+  
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
 
   // Function to check whether to disable the "Next" button
   useEffect(() => {
@@ -78,8 +91,8 @@ export const NewDiagnosesTable = ({ newDiagnoses, setDisabledNext }: NewDiagnose
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Name</TableHead>
-            <TableHead>Action</TableHead>
+            <TableHead className="w-[100px]">{isMounted && languageTexts(lang).name}</TableHead>
+            <TableHead className='capitalize'>{isMounted && languageTexts(lang).action }</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -93,14 +106,14 @@ export const NewDiagnosesTable = ({ newDiagnoses, setDisabledNext }: NewDiagnose
                       variant="outline"
                       onClick={() => handleRemoveDiagnoseClick(nD)}
                     >
-                      Remove
+                     {languageTexts(lang).remove}
                     </Button>
                   ) : (
                     <Button
                       variant="primary"
                       onClick={() => handleAddDiagnoseClick(nD)}
                     >
-                      Add
+                      {isMounted && languageTexts(lang).add}
                     </Button>
                   )}
 

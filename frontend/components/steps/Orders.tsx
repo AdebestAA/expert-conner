@@ -7,11 +7,23 @@ import { NonMedicationOrder, PastOrderWithChecked } from '@/interface'
 import { GenericDialog } from '@/components/custom/GenericDialog'
 import { DialogTitle, Subtitle, Title } from '@/components/Title'
 import { AddMedicationSelection } from '../tables/orders/MedicationOrders'
-
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 export const Orders = ({ setDisabledNext }: { setDisabledNext: (state: boolean) => void }) => {
   const [open, setOpen] = useState(true)
   const { medicalCase } = useCaseContext()
   const [showRest, setShowRest] = useState(false)
+
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+  
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
 
   const orderData = medicalCase?.order?.filter(order => !(order.endDate < 0));
 
@@ -62,10 +74,10 @@ export const Orders = ({ setDisabledNext }: { setDisabledNext: (state: boolean) 
 
   return (
     <div className="flex flex-col gap-4">
-      <Title title="Treatment Plans" />
+      <Title title={isMounted ?languageTexts(lang).treatmentPlans : "Treatment Plans"} />
       {orderData && orderData.length > 0 && 
         <>
-          <Subtitle title="What adjustments, if any, would you make to the patient’s existing medications?" />
+          <Subtitle title={isMounted ? languageTexts(lang).adjustMedications : "What adjustments, if any, would you make to the patient’s existing medications?"} />
       
           {stateOrderData && (
             <ContinueDiscontinueList
@@ -98,12 +110,9 @@ export const Orders = ({ setDisabledNext }: { setDisabledNext: (state: boolean) 
       <GenericDialog
         open={open}
         onOpenChange={() => setOpen(!open)}
-        title={<DialogTitle title="Medication Guide" />}
+        title={<DialogTitle title={isMounted ? languageTexts(lang).medicationGuide : "Medication Guide"} />}
         content={<p>
-          Drug information is provided based on clinical guidelines and current research. Please refer to the package
-          insert or summary of product characteristics, validated sources of product information, and clinical
-          guidelines
-          for further guidance.</p>
+         {isMounted && languageTexts(lang).drugInformationText}</p>
         }
         showButton
       />

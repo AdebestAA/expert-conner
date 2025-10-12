@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDisclose } from '@/lib/hooks/useDisclose'
 import { GenericDialog } from '@/components/custom/GenericDialog'
 import { RenderHTML } from '@/components/RenderHTML'
@@ -7,11 +7,14 @@ import { ActionFindingTable } from '@/components/tables/ActionFindingTable'
 import { ActionResultTable } from '@/components/tables/ActionResultTable'
 import { useCaseContext } from '@/lib/context/caseContext'
 import { GuidanceIcon, GuidanceTitle } from '@/components/GuidanceTitle'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 export function resolveActionTextSelection(item: any): any {
   if (!item) return null
 
   const components = []
+
 
   if (item?.findings?.html) {
     components.push(<RenderHTML htmlString={item?.findings.html} />)
@@ -41,6 +44,16 @@ export const DecisionsToConsiderTable = ({ decisionsToConsider }: { decisionsToC
   const [selectedDecision, setSelectedDecision] = React.useState<any>(null)
   const { isOpen, onToggle } = useDisclose()
   const { updateItemToReview } = useCaseContext()
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+ 
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
 
   function handleDecisionClick(decision: any) {
     setSelectedDecision(decision)
@@ -63,7 +76,7 @@ export const DecisionsToConsiderTable = ({ decisionsToConsider }: { decisionsToC
 
               <div className="flex items-center gap-4">
                 <Button variant="outline" onClick={() => handleDecisionClick(decision)}>
-                  Add
+                  {isMounted && languageTexts(lang).add}
                 </Button>
 
                 {/* TODO: These should not show, on decisions reviewed?? */}

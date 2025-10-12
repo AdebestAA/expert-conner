@@ -38,9 +38,9 @@ export const SimulationPage: FC<Props> = ({ medicalCase, patientCase, medicalCas
   const [disabledNext, setDisabledNext] = useState(false)
   const [isPatientCardOpen, setPatientCardOpen] = useState(false)
   const [diagnosisUrl, setDiagnosisUrl] = useState('')
-  const [isMounted,setIsMounted] = useState<boolean>(false)
   const { isFormDirty } = useCaseContext()
   let allSteps: any[]
+  const [isMounted,setIsMounted] = useState<boolean>(false)
 
   
 const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
@@ -105,28 +105,28 @@ const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "f
           key={isMounted ? languageTexts(lang).diagnoses  : ""}
         />
       ),
-      key: 'Diagnoses',
+      key:isMounted ? languageTexts(lang).diagnoses  : "",
       isStep: hasDiagnoses(),
     },
     {
       component: (
         <Orders
           setDisabledNext={setDisabledNext}
-          key="Orders"
+          key={isMounted ? languageTexts(lang).orders  : ""}
         />
       ),
-      key: 'Treatment',
+      key: isMounted ? languageTexts(lang).treatment  : "",
       isStep: hasOrders(),
     },
-    { component: <DecisionReview key="DecisionReview" />, key: 'Decisions', isStep: true },
+    { component: <DecisionReview key={isMounted ? languageTexts(lang).DecisionReview : "DecisionReview"} />, key: isMounted ? languageTexts(lang).decisions : "Decisions", isStep: true },
     {
       component: (
         <CaseReview
           setDiagnosisUrl={setDiagnosisUrl}
-          key="CaseReview"
+          key={isMounted ? languageTexts(lang).CaseReview : "CaseReview"}
         />
       ),
-      key: 'Summary',
+      key:isMounted ? languageTexts(lang).summary :  'Summary',
       isStep: hasCaseReview(),
     },
     ,

@@ -1,12 +1,24 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCaseContext } from '@/lib/context/caseContext'
 import { RenderHTML } from '../RenderHTML'
 import { Title } from '@/components/Title'
 import { checkEmptyRichText } from '@/lib/utils';
+import Cookies from "js-cookie"
+import languageTexts from '@/lib/utils/language'
 
 export const CaseReview = ({setDiagnosisUrl}: {setDiagnosisUrl: React.Dispatch<React.SetStateAction<string>>}) => {
   const { medicalCase } = useCaseContext()
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+ 
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
 
   
   useEffect(() => {
@@ -26,6 +38,16 @@ export const CaseReview = ({setDiagnosisUrl}: {setDiagnosisUrl: React.Dispatch<R
 
 const CaseReviewTabs = () => {
   const { medicalCase } = useCaseContext()
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+ 
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
 
   const hasClosingRemarks = () => {
     return medicalCase?.closingRemarks && !checkEmptyRichText(medicalCase?.closingRemarks.html)
@@ -41,20 +63,20 @@ const CaseReviewTabs = () => {
 
   return (
     <>
-      <Title title="Case Review" />
+      <Title title={isMounted ? languageTexts(lang).caseReview : "Case Review"} />
       <Tabs
         defaultValue={hasClosingRemarks() ? 'closing-remarks' : hasLiteratureReview() ? 'literature-review' : 'references'}
         className="mt-4"
       >
         <TabsList variant="default">
           {hasClosingRemarks() && (
-            <TabsTrigger value="closing-remarks">Closing Remarks</TabsTrigger>
+            <TabsTrigger value="closing-remarks">{isMounted && languageTexts(lang).closingRemarks}</TabsTrigger>
           )}
           {hasLiteratureReview() && (
-            <TabsTrigger value="literature-review">Literature Review</TabsTrigger>
+            <TabsTrigger value="literature-review">{isMounted && languageTexts(lang).literatureReview}</TabsTrigger>
           )}
           {hasReferences() && (
-            <TabsTrigger value="references">References</TabsTrigger>
+            <TabsTrigger value="references">{isMounted && languageTexts(lang).references}</TabsTrigger>
           )}
 
         </TabsList>
