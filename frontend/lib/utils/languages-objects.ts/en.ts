@@ -171,6 +171,7 @@ selectRationales:"Select Rationales",
     summary:"Summary",
     closingRemarks:"Closing Remarks",
     literatureReview:"Literature Review",
-    references:"References"
+    references:"References",
+    
   };
   
