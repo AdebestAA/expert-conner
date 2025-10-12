@@ -26,7 +26,7 @@ const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "f
   return (
     <div className="flex flex-col gap-4">
       <Title title={isMounted ? languageTexts(lang).tests : "Tests"} />
-      <Label title="Select appropriate tests for the patient." />
+      <Label title={isMounted ? languageTexts(lang).selectAppropriateTests : "Select appropriate tests for the patient."} />
       {medicalCase && (
         <TestsTable
           setDisabledNext={setDisabledNext}
