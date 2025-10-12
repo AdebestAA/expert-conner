@@ -62,7 +62,7 @@ export const de = {
   demographics: "Demografie",
   visits: "Besuche",
   tests: "Tests",
-  test: "Test",
+  test: "Prüfen",
   order: "Bestellung",
   remove: "Entfernen",
   add: "Hinzufügen",
