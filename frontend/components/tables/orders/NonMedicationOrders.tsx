@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDisclose } from '@/lib/hooks/useDisclose'
 import { GenericDialog } from '@/components/custom/GenericDialog'
 import { NonMedicationOrder } from '@/interface'
@@ -7,6 +7,8 @@ import { RenderHTML } from '@/components/RenderHTML'
 import { GuidanceIcon, GuidanceTitle } from '@/components/GuidanceTitle'
 import { useCaseContext } from '@/lib/context/caseContext'
 import { H2, Label } from '@/components/Title'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 type AddNonMedicationOrdersProps = {
   nonMedicationOrderData?: NonMedicationOrder[]
@@ -20,6 +22,17 @@ export const AddNonMedicationOrders = ({ nonMedicationOrderData, setDisabledNext
   const [orders, setOrders] = React.useState<ExtendedOrder[]>(nonMedicationOrderData as ExtendedOrder[])
   const { isOpen, onToggle } = useDisclose()
   const { updateItemToReview, removeItemFromReview } = useCaseContext()
+
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+  
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
 
   // Check if any non-medication order requires guidance and update the "Next" button state
   useEffect(() => {
@@ -57,8 +70,8 @@ export const AddNonMedicationOrders = ({ nonMedicationOrderData, setDisabledNext
 
   return (
     <div className="mt-8">
-      <H2 title="Add Non-Medication Orders" />
-      <Label title="Select appropriate additional orders for the patient." />
+      <H2 title={isMounted ? languageTexts(lang).addNonMedicationOrders : "Add Non-Medication Orders"} />
+      <Label title={isMounted ? languageTexts(lang).selectAppropriate : "Select appropriate additional orders for the patient."} />
 
       <ul>
         {orders?.map((order) => (
@@ -74,7 +87,7 @@ export const AddNonMedicationOrders = ({ nonMedicationOrderData, setDisabledNext
                   variant="outline"
                   onClick={() => handleOrderButtonClick(order)}
                 >
-                  {order.showGuidance ? 'Remove' : 'Add'}
+                  {isMounted && order.showGuidance ? languageTexts(lang).remove : languageTexts(lang).add}
                 </Button>
 
                 {order.showGuidance && (

@@ -6,7 +6,7 @@ export default function SingleCaseLayout({ children }: { children: React.ReactNo
   return (
     <Suspense fallback={<LoadingPage />}>
       <div>
-      {/* <LanguageDropDown/> */}
+      <LanguageDropDown/>
         {children}
       </div>
     </Suspense>

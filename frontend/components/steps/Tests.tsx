@@ -7,13 +7,25 @@ import { Test } from '@/interface'
 import { GuidanceIcon, GuidanceTitle } from '@/components/GuidanceTitle'
 import { RenderHTML } from '@/components/RenderHTML'
 import { H2, Label, Title } from '@/components/Title'
+import { Import } from 'lucide-react'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 const Tests = ({ setDisabledNext }: { setDisabledNext: (state: boolean) => void }) => {
   const { medicalCase } = useCaseContext()
+  const [isMounted,setIsMounted] = useState<boolean>(false)
 
+  
+const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+
+
+  useEffect(()=>{
+    setIsMounted(true)
+      },[])
   return (
     <div className="flex flex-col gap-4">
-      <Title title="Tests" />
+      <Title title={isMounted ? languageTexts(lang).tests : "Tests"} />
       <Label title="Select appropriate tests for the patient." />
       {medicalCase && (
         <TestsTable
@@ -37,10 +49,20 @@ const TestsTable = ({ tests, setDisabledNext }: TestsTableProps) => {
   const { isOpen: isOnlyGuidanceOpen, onToggle: onOnlyGuidanceToggle } = useDisclose()
   const { isOpen: isOnlyFindingOpen, onToggle: onOnlyFindingToggle } = useDisclose()
 
+
   const [selectedTestContent, setSelectedTestContent] = React.useState<any>(null)
   const [testsState, setTestsState] = useState<ExtendedTest[]>(tests as ExtendedTest[])
   const { updateItemToReview, removeItemFromReview } = useCaseContext()
+  const [isMounted,setIsMounted] = useState<boolean>(false)
 
+  
+const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+
+
+  useEffect(()=>{
+    setIsMounted(true)
+      },[])
   // Function to check whether to disable the "Next" button
   useEffect(() => {
     const shouldDisableNext = testsState?.some((test) => test.showGuidance && !test.guidance)
@@ -55,7 +77,7 @@ const TestsTable = ({ tests, setDisabledNext }: TestsTableProps) => {
       return o
     })
     setTestsState(_tests)
-    updateItemToReview({ ...test, reviewed: true }, 'test')
+    updateItemToReview({ ...test, reviewed: true },languageTexts(lang).test || 'test')
     setSelectedTestContent(test)
     onToggle()
   }
@@ -119,8 +141,8 @@ const TestsTable = ({ tests, setDisabledNext }: TestsTableProps) => {
           <H2
             title={
               selectedTestContent?.guidance
-                ? 'Information provided for your benefit!'
-                : 'Hmm, something doesn’t look right...'
+                ? languageTexts(lang).providedForYourBenefit
+                : languageTexts(lang).somethingDoesNotLookRight
             }
           />
         }
@@ -135,7 +157,7 @@ const TestsTable = ({ tests, setDisabledNext }: TestsTableProps) => {
         open={isOnlyFindingOpen}
         onOpenChange={onOnlyFindingToggle}
         icon={<GuidanceIcon guidance={selectedTestContent?.guidance} />}
-        title={<p>Findings</p>}
+        title={<p className='capitalize'>{languageTexts(lang).findings}</p>}
         content={
           !selectedTestContent?.guidance ? (
             <div>
@@ -160,6 +182,18 @@ type TestListProps = {
 }
 
 const TestList = ({ tests, onClick, guidanceOnClick, handleRemoveTestClick }: TestListProps) => {
+
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+
+
+  useEffect(()=>{
+    setIsMounted(true)
+      },[])
+
   return (
     <ul>
       {tests?.map((test, index) => (
@@ -175,22 +209,23 @@ const TestList = ({ tests, onClick, guidanceOnClick, handleRemoveTestClick }: Te
                   variant="outline"
                   onClick={() => onClick(test)}
                 >
-                  View
+                 {isMounted && languageTexts(lang).view}
                 </Button>
               ) : (
                 <Button
                   variant="outline"
                   onClick={() => handleRemoveTestClick(test)}
                 >
-                  Remove
+                  {isMounted && languageTexts(lang).remove}
                 </Button>
               )
             ) : (
               <Button
                 variant="outline"
+                className='capitalize'
                 onClick={() => onClick(test)}
               >
-                Order
+                {isMounted && languageTexts(lang).order}
               </Button>
             )}
             <div

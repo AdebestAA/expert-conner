@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDisclose } from '@/lib/hooks/useDisclose'
 import { GenericDialog } from '@/components/custom/GenericDialog'
 import { MedicationSelection } from '@/interface'
@@ -8,6 +8,8 @@ import { GuidanceIconStrings, GuidanceTitleStrings } from '@/components/Guidance
 import { useCaseContext } from '@/lib/context/caseContext'
 import { H2, Label, MedicationLabel } from '@/components/Title'
 import { RationalesDialog } from '@/components/custom/RationalesDialog'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 type AddMedicationSelectionProps = {
   medicationSelectionData?: MedicationSelection[]
@@ -26,7 +28,16 @@ export const AddMedicationSelection = ({
   const [medications, setMedications] = React.useState<ExtendedOrder[]>(medicationSelectionData as ExtendedOrder[])
   const { isOpen, onToggle } = useDisclose()
   const { updateItemToReview, removeItemFromReview } = useCaseContext()
+  const [isMounted,setIsMounted] = useState<boolean>(false)
 
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+  
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
   function handleIconClick(medication: ExtendedOrder) {
     setCurrentMedicationSelection(medication)
     onToggle()
@@ -57,16 +68,16 @@ export const AddMedicationSelection = ({
 
   return (
     <div className="mt-8">
-      <H2 title="Add Medications" />
+      <H2 title={isMounted ? languageTexts(lang).addMedications : "Add Medications"} />
       <div className="flex justify-end font-bold">
         <MedicationLabel
-          title={
+          title={isMounted &&
             medicationAmount > 0
-              ? 'Please select ' +
-                medicationAmount +
-                (medicationAmount > 1 ? ' medications' : ' medication') +
-                ' to proceed to the next page.'
-              : "Please don't select any medication to proceed to the next page."
+              ? languageTexts(lang).pleaseSelect+ " " +
+                medicationAmount + " "+ 
+                (medicationAmount > 1 ? languageTexts(lang).medications : languageTexts(lang).medication) + " " + 
+               languageTexts(lang).toProceedToNextPage
+              : languageTexts(lang).dontSelectAnyMedicationToProceed
           }
         />
       </div>
@@ -85,9 +96,10 @@ export const AddMedicationSelection = ({
               <div className="flex items-center gap-4">
                 <Button
                   variant="outline"
+                  className='capitalize'
                   onClick={() => handleMedicationButtonClick(medication)}
                 >
-                  {medication.showGuidance ? 'Remove' : 'Add'}
+                  {isMounted && medication.showGuidance ? languageTexts(lang).remove : languageTexts(lang).add}
                 </Button>
 
                 {medication.showGuidance && (

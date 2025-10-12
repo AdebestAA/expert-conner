@@ -1,28 +1,58 @@
 import { Asterisk, Check, CheckCheck } from 'lucide-react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IonAlert } from '@/components/icons/ion_alert'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
-export const GuidanceTitle = ({ guidance }: { guidance?: boolean }) => (
-  <div className="flex items-center">
-    <p className="ml-2">{guidance ? 'This is consistent with the guidance' : 'This is inconsistent with the guidance'}</p>
+export const GuidanceTitle = ({ guidance }: { guidance?: boolean }) => {
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+  
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
+  
+
+
+  return <div className="flex items-center">
+    <p className="ml-2">{isMounted && guidance ? languageTexts(lang).consistentWithGuidance : languageTexts(lang).inconsistentWithGuidance}</p>
   </div>
-)
+}
 
 export const GuidanceIcon = ({ guidance, clickEvent }: { guidance?: boolean, clickEvent?: any }) => (
+
+  
 <div onClick={clickEvent ? clickEvent : undefined} className="flex items-center">
       {guidance ? <CheckIcon /> : <AsteriskIcon />}
   </div>
 )
 
-export const GuidanceTitleStrings = ({ guidanceType }: { guidanceType?: string }) => (
-  <div className="flex items-center">
+export const GuidanceTitleStrings = ({ guidanceType }: { guidanceType?: string }) => {
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+
+
+  useEffect(()=>{
+    setIsMounted(true)
+      },[])
+
+
+  return <div className="flex items-center">
     <p className="ml-2">
-      {guidanceType === 'correct' ? 'This is consistent with the guidance' :
-      guidanceType === 'incorrect' ? 'This is inconsistent with the guidance' :
-      guidanceType === 'partiallyCorrect' ? 'This is less optimal according to the guidance' : ''}
+      {isMounted && guidanceType === 'correct' ? languageTexts(lang).consistentWithGuidance :
+      guidanceType === 'incorrect' ? languageTexts(lang).inconsistentWithGuidance :
+      guidanceType === 'partiallyCorrect' ? languageTexts(lang).lessOptimal : ''}
     </p>
   </div>
-)
+  }
+
 
 export const GuidanceIconStrings = ({ guidanceType, clickEvent }: { guidanceType?: string, clickEvent?: any }) => (
   <div onClick={clickEvent ? clickEvent : undefined} className="flex items-center">

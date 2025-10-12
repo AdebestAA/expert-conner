@@ -11,7 +11,7 @@ export const languageTexts = (lang:"en" | "fr" |"de" = "en")=>{
 
 console.log("cookies from language ", lang);
 
-// if lang = fr
+
 if (lang == "fr") {
     return  fr
     

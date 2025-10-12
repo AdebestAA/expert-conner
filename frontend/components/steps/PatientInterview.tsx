@@ -1,11 +1,13 @@
 'use client'
 
-import React, { FC, useMemo, useState } from 'react'
+import React, { FC, useEffect, useMemo, useState } from 'react'
 import VideoSelectButton from '../custom/VideoSelectButton'
 import { useCaseContext } from '@/lib/context/caseContext'
 import { RenderHTML } from '@/components/RenderHTML'
 import ReactPlayer from 'react-player'
 import { Title } from '@/components/Title'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 interface Props {
 }
@@ -14,6 +16,15 @@ interface Props {
 const PatientInterview: FC<Props> = () => {
   const [selectedVideo, setSelectedVideo] = useState(0)
   const [videoPlaying, setVideoPlaying] = useState(false);
+const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+
+
+
+  useEffect(()=>{
+    setIsMounted(true)
+      },[])
 
   const { medicalCase } = useCaseContext()
 
@@ -27,7 +38,7 @@ const PatientInterview: FC<Props> = () => {
   };
 
   if (!videoToShow) {
-    return <p>There is no video to be displayed.</p>
+    return <p>{languageTexts(lang).noVideo}</p>
   }
 
   return (

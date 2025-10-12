@@ -3,6 +3,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button'
 import { Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle } from '@/components/ui/drawer'
 import { ChevronsRight } from 'lucide-react'
+import Cookies from 'js-cookie'
+import languageTexts from '@/lib/utils/language'
 
 type RationalesDialogProps = {
   asDrawer?: boolean
@@ -24,6 +26,17 @@ const formatText = (key: string): string => {
 
 export const RationalesDialog = (props: RationalesDialogProps) => {
   const [step, setStep] = useState(1) // Track which step is being displayed
+  const [isMounted,setIsMounted] = useState<boolean>(false)
+
+  
+  const lang: "en" | "fr" | "de"| undefined = Cookies.get("language") as "en" | "fr" | "de"| undefined
+  
+  
+  
+    useEffect(()=>{
+      setIsMounted(true)
+        },[])
+
 
   // Reset step to 1 when the dialog/drawer is closed
   useEffect(() => {
@@ -61,7 +74,7 @@ export const RationalesDialog = (props: RationalesDialogProps) => {
           {props.isRationale && step === 1 ? (
             <DrawerHeader>
               <DrawerTitle className="flex items-center gap-2 mb-4">
-                Select an Option
+                {isMounted &&languageTexts(lang).selectAnOption}
               </DrawerTitle>
               {/* Radio Button List */}
               <div className="flex flex-col gap-4">
@@ -80,7 +93,7 @@ export const RationalesDialog = (props: RationalesDialogProps) => {
               </div>
               <DrawerFooter>
                 <Button variant="primary" className="py-6" onClick={handleNextStep}>
-                  Next
+                  {isMounted && languageTexts(lang).next}
                 </Button>
               </DrawerFooter>
             </DrawerHeader>
@@ -95,12 +108,13 @@ export const RationalesDialog = (props: RationalesDialogProps) => {
               </DrawerHeader>
               <DrawerFooter>
                 {props.isRationale && (
-                  <Button variant="outline" className="py-6 mr-4" onClick={handleBack}>
-                    Back
+                  <Button variant="outline" className="py-6 mr-4 capitalize" onClick={handleBack}>
+                   {isMounted && languageTexts(lang).back}
                   </Button>
                 )}
-                <Button variant="primary" className="py-6" onClick={handleClose}>
-                  Close
+                <Button variant="primary" className="py-6 capitalize" onClick={handleClose}>
+                {isMounted && languageTexts(lang).close}
+                  
                 </Button>
               </DrawerFooter>
             </>
@@ -116,7 +130,7 @@ export const RationalesDialog = (props: RationalesDialogProps) => {
         {step === 1 ? (
           <>
             <DialogHeader>
-              <DialogTitle>Select Rationales</DialogTitle>
+              <DialogTitle>{isMounted && languageTexts(lang).selectRationales}</DialogTitle>
             </DialogHeader>
             {/* Radio Button List */}
             <div className="flex flex-col gap-4">
@@ -134,7 +148,7 @@ export const RationalesDialog = (props: RationalesDialogProps) => {
               ))}
             </div>
             <Button variant="primary" className="py-6 mt-6" onClick={handleNextStep}>
-              Next
+           {isMounted && languageTexts(lang).next}
             </Button>
           </>
         ) : (
@@ -150,7 +164,7 @@ export const RationalesDialog = (props: RationalesDialogProps) => {
             </div>
             {props.showButton && (
               <Button variant="primary" className="py-6 mt-6" onClick={handleClose}>
-                Got it!
+               {isMounted && languageTexts(lang).gotIt}
               </Button>
             )}
           </>
