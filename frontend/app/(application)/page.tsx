@@ -35,13 +35,14 @@ const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
   // }
   medicalCases = await getAllMedicalCases()
 
-
+  
   
   // Ensure caseDescription is always defined
   medicalCases = medicalCases?.map((mc: any) => ({
     ...mc,
     caseDescription: mc.caseDescription ?? { html: '' },
   }))
+ 
 
   return (
     <div className="h-full flex flex-col">

@@ -42,70 +42,157 @@ export const getAllMedicalCases = async (): Promise<MergedMedicalCase[]> => {
     cache: 'no-store',
     body: JSON.stringify({
       query: `{
-        medicalCases(locales:[${languageValue ? languageValue : "en"}], first: 150, orderBy: createdAt_DESC) {
-          id
-          title
-          supporter
-          faculty
-          contentType
-          countries
-          categories
-          likes
-          caseDescription { html }
-          preCaseInformation { html }
-          historyOfPresentIllness { html }
-          familyAndSocialHistory { html }
-          importantInformation { html }
-          physicalExaminationNotes { html }
-          closingRemarks { html }
-          literatureReview { html }
-          references { html }
-          bannerTopBarImage { url }
-          showBannerTopBarImage
-          patient {
-          profileImage { url }
-          }
+webinarVideos(first: 150,orderBy: createdAt_DESC){
+  id
+  name
+  description
+  videoUrl
+  contentType
+  supporter
+  faculty
+  title
+  caseDescription {html}
+  }
+
+  medicalCases(locales:[${languageValue ? languageValue : "en"}], first: 150, orderBy: createdAt_DESC) {
+  id
+  title
+  supporter
+  faculty
+  contentType
+  countries
+  categories
+  likes
+  caseDescription { html }
+  preCaseInformation { html }
+  historyOfPresentIllness { html }
+  familyAndSocialHistory { html }
+  importantInformation { html }
+  physicalExaminationNotes { html }
+  closingRemarks { html }
+  literatureReview { html }
+  references { html }
+  bannerTopBarImage { url }
+  showBannerTopBarImage
+  patient {
+  profileImage { url }
+  }
 
 
-        }
-        medicalCasesV2(locales:[${languageValue ? languageValue : "en"}],first: 150, orderBy: createdAt_DESC) {
-          id
-          title
-          supporter
-          faculty
-          caseDescription { html }
-          patient {
-            id
-            profileImage { url }
-          }
-        }
+}
+
+
+medicalCasesV2(locales:[${languageValue ? languageValue : "en"}],first: 150, orderBy: createdAt_DESC) {
+  id
+  title
+  supporter
+  faculty
+  caseDescription { html }
+  patient {
+    id
+    profileImage { url }
+  }
+}
+
+
       }`,
     }),
   })
 
   const res = await response.json()
+  
+  // console.log(res.data,"data");
+  
+  const video = (res?.data?.webinarVideos || []).map((v: any) => ({ version: '20m', ...v }))
   const v1 = (res?.data?.medicalCases || []).map((c: any) => ({ version: '15m', ...c }))
   const v2 = (res?.data?.medicalCasesV2 || []).map((c: any) => ({ version: '5m', ...c }))
-  return [...v1, ...v2]
+  return [...video,...v1, ...v2,]
 }
-// supporter
-// faculty
-// countries
-// categories
-// likes
-// caseDescription { html }
-// preCaseInformation { html }
-// historyOfPresentIllness { html }
-// familyAndSocialHistory { html }
-// importantInformation { html }
-// physicalExaminationNotes { html }
-// closingRemarks { html }
-// literatureReview { html }
-// references { html }
-// bannerTopBarImage { url }
-// showBannerTopBarImage
-// patient {
+
+// medicalCases(locales:[${languageValue ? languageValue : "en"}], first: 150, orderBy: createdAt_DESC) {
+//   id
+//   title
+//   supporter
+//   faculty
+//   contentType
+//   countries
+//   categories
+//   likes
+//   caseDescription { html }
+//   preCaseInformation { html }
+//   historyOfPresentIllness { html }
+//   familyAndSocialHistory { html }
+//   importantInformation { html }
+//   physicalExaminationNotes { html }
+//   closingRemarks { html }
+//   literatureReview { html }
+//   references { html }
+//   bannerTopBarImage { url }
+//   showBannerTopBarImage
+//   patient {
 //   profileImage { url }
+//   }
+
+
+// }
+
+
+// medicalCasesV2(locales:[${languageValue ? languageValue : "en"}],first: 150, orderBy: createdAt_DESC) {
+//   id
+//   title
+//   supporter
+//   faculty
+//   caseDescription { html }
+//   patient {
+//     id
+//     profileImage { url }
+//   }
+// }
+
+
+
+
+// Testings{
+//   id
+//   name
+//   }
+// medicalCasesV2(locales:[${languageValue ? languageValue : "en"}],first: 150, orderBy: createdAt_DESC) {
+//   id
+//   title
+//   supporter
+//   faculty
+//   caseDescription { html }
+//   patient {
+//     id
+//     profileImage { url }
+//   }
+// }
+
+// medicalCases(locales:[${languageValue ? languageValue : "en"}], first: 150, orderBy: createdAt_DESC) {
+//   id
+//   title
+//   supporter
+//   faculty
+//   contentType
+//   countries
+//   categories
+//   likes
+//   caseDescription { html }
+//   preCaseInformation { html }
+//   historyOfPresentIllness { html }
+//   familyAndSocialHistory { html }
+//   importantInformation { html }
+//   physicalExaminationNotes { html }
+//   closingRemarks { html }
+//   literatureReview { html }
+//   references { html }
+//   bannerTopBarImage { url }
+//   showBannerTopBarImage
+//   patient {
+//   profileImage { url }
+//   }
+
+
 // }
 
 export const getAllMedicalCasesForStaging = async (): Promise<MergedMedicalCase[]> => {

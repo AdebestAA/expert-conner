@@ -132,7 +132,21 @@ setIsMounted(true)
 
     const isV2 = version === '5m'
 
+    const isVideo = version === "20m"
+    
+    
+    
+    
+
     if (!selectedCase) return
+
+    if (isVideo) {
+      
+      
+      router.push(`/webinar-video/${id}`)
+      return
+      
+    }
 
     if (isV2) {
       router.push(`/cases-v2/${id}`)

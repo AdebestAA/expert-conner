@@ -47,6 +47,7 @@ export const de = {
     "Hoppla – es scheint, dass Sie vergessen haben, einen Patienten hinzuzufügen. Bitte tun Sie dies in Hygraph (dem CMS).",
   adjustmentsToDecisions: "Möchten Sie Ihre Entscheidungen anpassen?",
   medicalCaseNotFound: "Medizinischer Fall nicht gefunden",
+  webinarVidoeNotFound:"Webinar-Video nicht gefunden",
   selectCategory: "Kategorie auswählen",
   allCategories: "Alle Kategorien",
   patientCaseNotFound: "Patientenfall nicht gefunden",
