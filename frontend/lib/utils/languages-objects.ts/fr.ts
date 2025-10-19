@@ -52,6 +52,7 @@ export const fr = {
     "Oups – il semble que vous ayez oublié d'ajouter un patient. Veuillez le faire dans Hygraph (le CMS).",
   adjustmentsToDecisions: "Souhaitez-vous apporter des ajustements à vos décisions ?",
   medicalCaseNotFound: "Cas médical introuvable",
+  webinarVidoeNotFound:"Vidéo du webinaire non trouvée",
   selectCategory: "Sélectionnez une catégorie",
   allCategories: "Toutes les catégories",
   patientCaseNotFound: "Cas du patient introuvable",

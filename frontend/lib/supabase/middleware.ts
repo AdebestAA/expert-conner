@@ -22,6 +22,7 @@ export async function updateSession(request: NextRequest) {
   // authcheck for landing page
   const isLandingPage = request.nextUrl.pathname == "/" 
   const isCasesPage = request.nextUrl.pathname.startsWith("/cases") 
+  const isWebinarVideoPage = request.nextUrl.pathname.startsWith("/webinar-video") 
 
   let supabaseResponse = NextResponse.next({
     request,
@@ -63,7 +64,7 @@ export async function updateSession(request: NextRequest) {
   }
 
   // Skip auth check for landing page, static files and API routes to prevent conflicts
-  if  ( isCasesPage ||isLandingPage || isApiRoute || isStaticFile ) {
+  if  (isWebinarVideoPage|| isCasesPage ||isLandingPage || isApiRoute || isStaticFile ) {
     return supabaseResponse
   }
 

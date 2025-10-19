@@ -36,7 +36,7 @@ export const en = {
                     description:`Description`,
                     contentType:`Content Type`,
                     supporter:`Supporter`,
-                    faculty:`Facaulty`,
+                    faculty:`Faculty`,
         
                 },
       english: "English",
@@ -50,6 +50,7 @@ export const en = {
       forgotToAddPatient:`Woops - seems like you&apos;ve forgot to add a patient, please do so in Hygraph (The CMS)`,
       adjustmentsToDecisions:`Would you like to make any adjustments to your decisions?`,
       medicalCaseNotFound:"Medical case not found",
+      webinarVidoeNotFound:"Webinar Video not found ",
       selectCategory: "Select Category",
       allCategories: "All Categories",
       patientCaseNotFound:`Patient case not found`,

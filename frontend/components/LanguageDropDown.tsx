@@ -50,7 +50,7 @@ onValueChange={(value)=>{
       <SelectContent>
         <SelectGroup >
           <SelectLabel>{isMounted ? languageTexts(lang).selectLanguage : ""}</SelectLabel>
-          <SelectItem value="en">English</SelectItem>
+          <SelectItem value="en">Multi Language</SelectItem>
           <SelectItem value="fr">French</SelectItem>
           <SelectItem value="de">German</SelectItem>
      

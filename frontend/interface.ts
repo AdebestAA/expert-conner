@@ -142,6 +142,23 @@ export type Audio = {
   url: string
 }
 
+
+export interface WebinarVideo {
+ 
+    id: string;
+    name: string;
+    description: string;
+    videoUrl: string;
+    contentType: string;
+    supporter: string;
+    faculty: string;
+    title: string;
+    caseDescription: {
+      html: string;
+    } | null;
+  
+}
+
 export interface MedicalCase {
   id: string
   title: string
