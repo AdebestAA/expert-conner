@@ -63,7 +63,7 @@ export interface Diagnose {
   url: string
 }
 
-export interface CidpTreatment {
+export interface treatment {
   id: string
   name: string
   guidance: boolean
@@ -240,7 +240,7 @@ export interface MedicalCaseV2 {
   faculty: string
   medicalCaseInformation: MedicalCaseInformation
   diagnose: Diagnose[]
-  cidpTreatment: CidpTreatment[]
+  treatment: treatment[]
   finishUrl: string
   patient: {
     id: string
