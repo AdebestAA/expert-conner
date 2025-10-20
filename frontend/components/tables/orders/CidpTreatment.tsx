@@ -1,7 +1,7 @@
 import React from 'react'
 import { FiCheck, FiPlus } from 'react-icons/fi'
 import { useDisclose } from '@/lib/hooks/useDisclose'
-import { CidpTreatment } from '@/interface'
+import { treatment } from '@/interface'
 import { RenderHTML } from '@/components/RenderHTML'
 import { GuidanceIconStrings, GuidanceTitleStrings } from '@/components/GuidanceTitle'
 import { useCaseContext } from '@/lib/context/caseContext'
@@ -9,13 +9,13 @@ import { RationalesDialog } from '@/components/custom/RationalesDialog'
 import { Button } from '@/components/ui/button'
 
 type AddCidpTreatmentProps = {
-  cidpTreatmentData?: CidpTreatment[]
+  cidpTreatmentData?: treatment[]
 }
 
-type ExtendedOrder = CidpTreatment & { showGuidance?: boolean }
+type ExtendedOrder = treatment & { showGuidance?: boolean }
 
 export const AddCidpTreatment = ({ cidpTreatmentData = [] }: AddCidpTreatmentProps) => {
-  const [currentCidpTreatment, setCurrentCidpTreatment] = React.useState<CidpTreatment | null>(null)
+  const [currentCidpTreatment, setCurrentCidpTreatment] = React.useState<treatment | null>(null)
   const [medications, setMedications] = React.useState<ExtendedOrder[]>(cidpTreatmentData)
   const { isOpen, onToggle } = useDisclose()
   const { updateItemToReview, removeItemFromReview } = useCaseContext()
