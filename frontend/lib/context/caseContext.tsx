@@ -42,7 +42,7 @@ export const CaseContextProvider = ({ children }: { children: React.ReactNode })
     if (medicalCaseV2 && !initialMedicalCaseV2) {
       const initial = {
         ...medicalCaseV2,
-        cidpTreatment: addIdsAndReviewed(medicalCaseV2.cidpTreatment),
+        treatment: addIdsAndReviewed(medicalCaseV2.treatment),
         diagnose: addIdsAndReviewed(medicalCaseV2.diagnose),
       }
       setInitialMedicalCaseV2(_.cloneDeep(initial))
@@ -57,12 +57,12 @@ export const CaseContextProvider = ({ children }: { children: React.ReactNode })
 
   useEffect(() => {
     if (medicalCaseV2) {
-      const needs = (arr: any[]) => arr.some((i) => !i.id || i.reviewed === undefined)
-      if (needs(medicalCaseV2.diagnose) || needs(medicalCaseV2.cidpTreatment)) {
+      const needs = (arr: any[]) => arr?.some((i) => !i.id || i.reviewed === undefined)
+      if (needs(medicalCaseV2.diagnose) || needs(medicalCaseV2.treatment)) {
         setMedicalCaseV2({
           ...medicalCaseV2,
           diagnose: addIdsAndReviewed(medicalCaseV2.diagnose),
-          cidpTreatment: addIdsAndReviewed(medicalCaseV2.cidpTreatment),
+          treatment: addIdsAndReviewed(medicalCaseV2.treatment),
         })
       }
     }
@@ -78,7 +78,7 @@ export const CaseContextProvider = ({ children }: { children: React.ReactNode })
         setMedicalCaseV2({
           ...medicalCaseV2,
           diagnose: upd(medicalCaseV2.diagnose),
-          cidpTreatment: upd(medicalCaseV2.cidpTreatment),
+         treatment: upd(medicalCaseV2.treatment),
         })
       } else if (medicalCase) {
         const upd = (arr: any[]) =>
@@ -108,7 +108,7 @@ export const CaseContextProvider = ({ children }: { children: React.ReactNode })
         setMedicalCaseV2({
           ...medicalCaseV2,
           diagnose: upd(medicalCaseV2.diagnose),
-          cidpTreatment: upd(medicalCaseV2.cidpTreatment),
+          treatment: upd(medicalCaseV2.treatment),
         })
       } else if (medicalCase) {
         const upd = (arr: any[]) =>

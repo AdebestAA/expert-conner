@@ -106,7 +106,9 @@ medicalCasesV2(locales:[${languageValue ? languageValue : "en"}],first: 150, ord
   const video = (res?.data?.webinarVideos || []).map((v: any) => ({ version: '20m', ...v }))
   const v1 = (res?.data?.medicalCases || []).map((c: any) => ({ version: '15m', ...c }))
   const v2 = (res?.data?.medicalCasesV2 || []).map((c: any) => ({ version: '5m', ...c }))
-  return [...video,...v1, ...v2,]
+  console.log(v2,"v2");
+  
+  return [...video,...v2,...v1,]
 }
 
 // medicalCases(locales:[${languageValue ? languageValue : "en"}], first: 150, orderBy: createdAt_DESC) {

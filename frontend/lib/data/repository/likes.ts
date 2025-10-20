@@ -97,6 +97,8 @@ export async function getLikesByMedicalCaseId(caseId: string) {
       data: likes,
     }
   } catch (err) {
+    console.log("likes error", err);
+    
     throw err instanceof Error ? err : new Error('Unknown error occurred')
   }
 }

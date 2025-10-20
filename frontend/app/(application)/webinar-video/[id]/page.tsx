@@ -55,6 +55,7 @@ const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
 //   const { data: likes } = await getLikesByMedicalCaseId(id)
 
   return <div className='lg:px-16 px-4 my-4 '>
+    <h1 className='font-semibold text-center my-2'>{webinarVideo.title}</h1>
 <VideoPlayer
   url= {webinarVideo.videoUrl}
   className = "shadow-2xl shadow-black"

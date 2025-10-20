@@ -51,7 +51,7 @@ export const SimulationPageV2: FC<Props> = ({ medicalCaseV2, patientCase, medica
 
   const pastDiagnoses = medicalCaseV2.diagnose.filter((d: Diagnose) => d.isExisting)
   const newDiagnoses = medicalCaseV2.diagnose.filter((d: Diagnose) => !d.isExisting)
-  const cidpTreatment = medicalCaseV2.cidpTreatment
+  const cidpTreatment = medicalCaseV2.treatment
 
   const cardStepsLeft = [
     {
@@ -63,15 +63,15 @@ export const SimulationPageV2: FC<Props> = ({ medicalCaseV2, patientCase, medica
         />
       ),
     },
-    {
-      title: 'Follow-up',
-      content: (
-        <RenderHTML
-          className="no-margin"
-          htmlString={shortenString(medicalCaseV2.medicalCaseInformation.followUp.html, 500)}
-        />
-      ),
-    },
+    // {
+    //   title: 'Follow-up',
+    //   content: (
+    //     <RenderHTML
+    //       className="no-margin"
+    //       htmlString={shortenString(medicalCaseV2.medicalCaseInformation.followUp.html, 500)}
+    //     />
+    //   ),
+    // },
     {
       title: 'Diagnostic Tests',
       content: (
