@@ -9,6 +9,7 @@ import languageTexts from '@/lib/utils/language'
 import getWebinarVideoById from '@/lib/hygraph/getWebinarVideoById'
 import VideoPlayer from '@/components/VideoPlayer'
 
+
 interface Props {
   params: {
     id: string;
@@ -18,16 +19,13 @@ async function Page({searchParams, params}: {  searchParams: Promise<{password: 
 {  
   const { id } = await params
   const { email, password } = await searchParams; 
-  console.log(id, "params");
+
   
 
 const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
 
   const webinarVideo = await getWebinarVideoById(id, {email, password})
-  // console.log(medicalCase);
-  
-  console.log(webinarVideo);
-  
+
   if (!webinarVideo) {
     return <div>{languageTexts(lang).webinarVidoeNotFound}</div>
   }
@@ -55,7 +53,8 @@ const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
 //   const { data: likes } = await getLikesByMedicalCaseId(id)
 
   return <div className='lg:px-16 px-4 my-4 '>
-    <h1 className='font-semibold text-center my-2'>{webinarVideo.title}</h1>
+     <h1 className="text-textPrimary font-semibold text-3xl text-center my-6">{webinarVideo.title}</h1>
+   
 <VideoPlayer
   url= {webinarVideo.videoUrl}
   className = "shadow-2xl shadow-black"
