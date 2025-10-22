@@ -8,6 +8,8 @@ import { cookies } from 'next/headers'
 import languageTexts from '@/lib/utils/language'
 import getWebinarVideoById from '@/lib/hygraph/getWebinarVideoById'
 import VideoPlayer from '@/components/VideoPlayer'
+import VideoPlayerBtn from '@/components/VideoPlayerBtn'
+
 
 
 interface Props {
@@ -61,6 +63,8 @@ const lang = cookies().get("language")?.value as "en" | "fr" | "de"| undefined
   aspectRatio = "16/9"
 
 />
+<VideoPlayerBtn/>
+
   </div>
 }
 
